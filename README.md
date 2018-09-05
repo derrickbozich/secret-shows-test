@@ -1,7 +1,7 @@
 # README
 rails g model User name:string --no-test-framework
 rails g resource City name:string --no-test-framework
-rails g resource Venue name:string city_id:integer --no-test-framework
+rails g resource Venue name:string --no-test-framework
 rails g resource Show name:string venue_id:integer --no-test-framework
 rails g resource Artist name:string --no-test-framework
 rails g migration create_show_artist show_id:integer artist_id:integer --no-test-framework

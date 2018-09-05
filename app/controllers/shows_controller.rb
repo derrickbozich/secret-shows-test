@@ -19,8 +19,13 @@ class ShowsController < ApplicationController
     #   })
 
     @show = Show.create(show_params)
-    
-    redirect_to shows_path
+    if @show.save
+      redirect_to shows_path
+    else
+      render :new
+    end
+
+
   end
 
   def index
@@ -29,6 +34,22 @@ class ShowsController < ApplicationController
 
   def show
     @show = Show.find_by_id(params[:id])
+  end
+
+  def edit
+    @show = Show.find_by_id(params[:id])
+  end
+
+  def update
+    @show = Show.find_by_id(params[:id])
+    @show.update(show_params)
+
+    if @show.save
+      redirect_to show_path(@show)
+    else
+      render :edit
+    end
+
   end
 
   def show_params
