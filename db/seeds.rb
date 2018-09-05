@@ -6,12 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-s = Show.create
-v = Venue.create
-c = City.create
-a = Artist.create
+s = Show.find_or_create_by(name: "Blonde Redhead at The Colliseum")
+v = Venue.find_or_create_by(name: "The Colliseum")
+c = City.find_or_create_by(name: "Athens")
+a = Artist.find_or_create_by(name: "Blonde Redhead")
 
 
 s.city = c
 s.artists << a
 s.venue = v
+
+s.save

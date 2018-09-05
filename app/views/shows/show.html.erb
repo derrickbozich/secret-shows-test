@@ -1,0 +1,7 @@
+<h1><%= @show.name %></h1>
+<h3><%= link_to @show.venue.name, venue_path(@show.venue) %></h3>
+<ul>
+  <% @show.artists.each do |artist| %>
+    <li><%= link_to artist.name, artist_path(artist) %></li>
+  <% end %>
+</ul>

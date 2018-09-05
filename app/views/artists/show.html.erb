@@ -1,0 +1,6 @@
+<h1><%= @artist.name %></h1>
+<ul>
+  <% @artist.shows.each do |show| %>
+    <li><%= link_to show.name, show_path(show) %></li>
+  <% end %>
+</ul>

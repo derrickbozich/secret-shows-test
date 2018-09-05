@@ -6,6 +6,8 @@ class Show < ApplicationRecord
   has_one :city_show
   has_one :city, through: :city_show
 
+  validates :name, presence: true, uniqueness: true
+
 
 
 
@@ -32,7 +34,7 @@ class Show < ApplicationRecord
   def artists_attributes=(artists_attributes)
 
     artists_attributes.each do |i, artist_attributes|
-      
+
       self.artists.build(artist_attributes)
 
     end

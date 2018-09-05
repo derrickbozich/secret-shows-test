@@ -1,0 +1,6 @@
+<h1><%= @city.name %></h1>
+<ul>
+  <% @city.shows.each do |show| %>
+    <li><%= link_to show.name, show_path(show) %></li>
+  <% end %>
+</ul>
