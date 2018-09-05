@@ -19,6 +19,7 @@ class ShowsController < ApplicationController
     #   })
 
     @show = Show.create(show_params)
+    
     redirect_to shows_path
   end
 
@@ -31,7 +32,7 @@ class ShowsController < ApplicationController
   end
 
   def show_params
-    params.require(:show).permit(:name,:city_name, :venue_name, :artists_attributes => [:name])
+    params.require(:show).permit(:name,:city_name, :venue_name, :date, :time, :artists_attributes => [:name])
   end
 
 

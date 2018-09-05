@@ -6,7 +6,7 @@ class Show < ApplicationRecord
   has_one :city_show
   has_one :city, through: :city_show
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
 
 
 
@@ -32,11 +32,19 @@ class Show < ApplicationRecord
   end
 
   def artists_attributes=(artists_attributes)
-
     artists_attributes.each do |i, artist_attributes|
-
       self.artists.build(artist_attributes)
-
     end
   end
+
+  def self.upcoming_shows
+    Show.where("date > ?", Date.today)
+  end
+
+  def self.past_shows
+    Show.where("date < ?", Date.today)
+  end
+
+
+
 end

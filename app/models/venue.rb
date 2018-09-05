@@ -4,5 +4,5 @@ class Venue < ApplicationRecord
   has_one :city_venue
   has_one :city, through: :city_venue
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
 end

@@ -1,14 +1,18 @@
 <%= form_for @show do |f|  %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :city_name %>
-  <%= f.text_field :city_name %>
-  <%= f.label :venue_name %>
-  <%= f.text_field :venue_name %>
+  <p><%= f.label :name %></p>
+  <p><%= f.text_field :name %></p>
+  <p><%= f.label :city_name %></p>
+  <p><%= f.text_field :city_name %></p>
+  <p><%= f.label :venue_name %></p>
+  <p><%= f.text_field :venue_name %></p>
   <%= f.fields_for :artists do |artist_builder| %>
-    <%= artist_builder.label :name %>
-    <%= artist_builder.text_field :name %>
+    <p><%= artist_builder.label :name %></p>
+    <p><%= artist_builder.text_field :name %></p>
   <% end  %>
+  <p><%= f.label :date %></p>
+  <p><%= f.date_select(:date, :order => [:month, :day, :year]) %></p>
+  <p><%= f.label :time %></p>
+  <p><%= f.time_select(:time, ampm: true) %></p>
 
 
   <%= f.submit %>

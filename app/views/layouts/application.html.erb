@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Performapp</title>
+    <title>secret shows</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,17 @@
   </head>
 
   <body>
+
     <%= yield %>
+    <%= link_to "Create a New Show", new_show_path %>
   </body>
+  <footer>
+    <% if current_user.present? %>
+    <p>current user:  <%= current_user.name %></p>
+    <p><%= link_to "Logout", logout_path %></p>
+    <% else %>
+      <%= link_to "Login", login_path  %>
+      <p><%= link_to('Log in with Facebook!', '/auth/facebook') %></p>
+    <% end %>
+  </footer>
 </html>

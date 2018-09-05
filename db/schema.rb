@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2018_09_04_204929) do
 
   create_table "shows", force: :cascade do |t|
     t.string "name"
+    t.date "date"
+    t.time "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
