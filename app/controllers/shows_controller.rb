@@ -19,7 +19,9 @@ class ShowsController < ApplicationController
     #   })
 
     @show = Show.create(show_params)
-    if @show.save
+    binding.pry
+
+    if @show.save && ShowArtist.last.save
       redirect_to shows_path
     else
       render :new
@@ -29,7 +31,9 @@ class ShowsController < ApplicationController
   end
 
   def index
-    @shows = Show.all
+    @shows = Show.upcoming_shows.select do |s|
+      s.date.present?
+    end
   end
 
   def show
@@ -51,6 +55,9 @@ class ShowsController < ApplicationController
     end
 
   end
+
+
+
 
   def show_params
     params.require(:show).permit(:name,:city_name, :venue_name, :date, :time, :artists_attributes => [:name])

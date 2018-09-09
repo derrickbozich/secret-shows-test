@@ -10,6 +10,10 @@
   </head>
 
   <body>
+    <%= form_tag search_artists_path, method: 'get' do %>
+      <%= text_field_tag :query, nil, placeholder: "search for artists and concerts"  %>
+
+    <% end %>
 
     <%= yield %>
     <p><%= link_to "Create a New Show", new_show_path %></p>

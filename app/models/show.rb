@@ -34,15 +34,23 @@ class Show < ApplicationRecord
   def artists_attributes=(artists_attributes)
     artists_attributes.each do |i, artist_attributes|
       self.artists.build(artist_attributes)
+      # artist = Artist.find_or_create_by(artist_attributes)
+      # ShowArtist.create(show_id: self.id, artist_id: artist.id)
+      binding.pry
+
     end
   end
 
   def self.upcoming_shows
-    Show.where("date > ?", Date.today)
+    Show.where("date > ?", Date.today).order('date asc').select do |s|
+      s.date.present?
+    end
   end
 
   def self.past_shows
-    Show.where("date < ?", Date.today)
+    Show.where("date < ?", Date.today).order('date asc').select do |s|
+      s.date.present?
+    end
   end
 
 

@@ -1,5 +1,5 @@
-<ul>
+
   <% @shows.each do |show| %>
-    <li><%= link_to show.name, show_path(show) %></li>
+    <%= link_to show.name, show_path(show) %> <%= show.date.strftime("%m/%d") if show.date.present? %>
+    <p><%= image_tag show.artists.first.image %></p>
   <% end %>
-</ul>

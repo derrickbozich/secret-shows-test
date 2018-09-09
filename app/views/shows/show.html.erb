@@ -4,5 +4,6 @@
 <ul>
   <% @show.artists.each do |artist| %>
     <li><%= link_to artist.name, artist_path(artist) %></li>
+    <p><%= image_tag artist.image %></p>
   <% end %>
 </ul>
