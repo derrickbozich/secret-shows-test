@@ -6,5 +6,6 @@ class ArtistsController < ApplicationController
   def search
     query = params[:query]
     @artist = Artist.where('name LIKE ?', query).first
+    
   end
 end

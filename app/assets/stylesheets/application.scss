@@ -12,5 +12,49 @@
  *
  */
 
- @import 'bootstrap-sprockets';
+
  @import 'bootstrap';
+
+ @import "font-awesome";
+
+
+ .style-1 {
+    color: black;
+}
+
+.style-1:hover,
+.style:focus {
+    color: black;
+    text-decoration: underline;
+
+}
+
+.form-control { border: 1px solid black;}
+
+@media (min-width: 768px) {
+  .navbar-expand-lg,
+  .navbar-nav {
+
+    margin: 0;
+    margin-left: -15px;
+  }
+}
+
+.navbar-expand-lg,
+.navbar-nav {
+    margin: 0 -15px;
+}
+
+.btn-outline-success, .btn {
+  color: black;
+  border-color: black;
+ } //button
+
+.btn-outline-success:hover {
+  background-color: black;
+  border-color: black;
+} //hover
+
+.card-header {
+  padding: .5rem;
+}

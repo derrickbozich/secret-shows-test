@@ -1,0 +1,3 @@
+<% shows.each do |show| %>
+  <%= card_list_item link_to show.date.strftime("%m/%d").to_s + " " + show.name  , show_path(show), class: 'style-1'  %>
+<% end %>

@@ -34,8 +34,11 @@ gem 'thin'
 
 # gem 'bootstrap'
 gem 'jquery-rails'
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap'
+gem 'sprockets-rails'
 # gem 'autoprefixer-rails'
+
+gem "font-awesome-rails"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

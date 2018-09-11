@@ -18,22 +18,20 @@ class ShowsController < ApplicationController
     #   artists_attributes: params[:show][:artists_attributes]
     #   })
 
-    @show = Show.create(show_params)
-    binding.pry
+    @show = Show.new(show_params)
+    @show.user_id = current_user.id  if current_user
+
 
     if @show.save && ShowArtist.last.save
+      flash[:success] = "Show Created!"
       redirect_to shows_path
     else
-      render :new
+      render 'new'
     end
-
-
   end
 
   def index
-    @shows = Show.upcoming_shows.select do |s|
-      s.date.present?
-    end
+    @shows = Show.upcoming_shows
   end
 
   def show
@@ -49,9 +47,23 @@ class ShowsController < ApplicationController
     @show.update(show_params)
 
     if @show.save
+      flash[:success] = "Show Edited!"
       redirect_to show_path(@show)
     else
-      render :edit
+      render 'edit'
+    end
+
+  end
+
+  def destroy
+    @show = Show.find_by_id(params[:id])
+    if current_user.shows.include?(@show)
+      @show.destroy
+      flash[:success] = "Show Deleted!"
+      redirect_to shows_path
+    else
+      flash[:error] = "Show Was Not Deleted!"
+      redirect_to shows_path
     end
 
   end
@@ -59,8 +71,10 @@ class ShowsController < ApplicationController
 
 
 
+
+
   def show_params
-    params.require(:show).permit(:name,:city_name, :venue_name, :date, :time, :artists_attributes => [:name])
+    params.require(:show).permit(:name,:city_name, :venue_name, :date, :time, :poster, :artists_attributes => [:name, :image])
   end
 
 

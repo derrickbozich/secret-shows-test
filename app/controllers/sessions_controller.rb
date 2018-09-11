@@ -5,8 +5,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to shows_path
+  
     end
-    # redirect_to login_path
+
   end
 
   def logout

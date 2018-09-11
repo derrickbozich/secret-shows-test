@@ -1,4 +1,10 @@
 # README
+
+
+
+def time_rand from = 0.0, to = Time.now
+    Time.at(from + rand * (to.to_f - from.to_f))
+end
 rails g model User name:string --no-test-framework
 rails g resource City name:string --no-test-framework
 rails g resource Venue name:string --no-test-framework

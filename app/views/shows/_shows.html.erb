@@ -1,0 +1,10 @@
+<%= content_tag :div, class: "row" do %>
+  <% shows.each do |show| %>
+    <%= content_tag :div, class: "col-lg-4 my-3" do %>
+      <%= card style: "width: 100%" do %>
+        <a href="<%= show_path(show) %>"><%= card_block src: show.poster, class: 'img-fluid'  %></a>
+        <%= card_header link_to show.date.strftime("%m/%d").to_s + " " + show.name, show_path(show), :class => 'style-1' %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

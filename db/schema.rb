@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2018_09_04_204929) do
     t.string "name"
     t.date "date"
     t.time "time"
+    t.string "poster"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

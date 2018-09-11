@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :venues, only: [:show,:index]
+  resources :venues, only: [:show, :index, :edit, :update]
 
   resources :cities, only: [:show,:index] do
     resources :shows, only: [:show,:index]
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :artists, only: [:show,:index]
   resources :shows
-  resources :users, only: [:new,:create]
+  resources :users, only: [:new,:create, :show]
   get '/login' => 'sessions#login'
   post '/login' => 'sessions#login'
   get '/logout' => 'sessions#logout'

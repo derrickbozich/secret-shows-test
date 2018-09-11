@@ -1,0 +1,13 @@
+<%= content_tag :div, class: 'page-header'  do %>
+  <a href="/shows" class='style-1'><h1>Secret Shows</h1></a>
+
+  <%= fa_icon "bars 2x", class: 'page-header'  %>
+
+  <%= form_tag search_artists_path, {method: 'get', class: 'form-inline my-2 my-lg-0' } do %>
+    <%= text_field_tag :query, nil, {placeholder: "search for artists and concerts", class: "form-control mr-sm-2" }  %>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+  <% end %>
+
+
+<% end %>

@@ -1,0 +1,14 @@
+<footer>
+  <%= content_tag :p do %>
+    <p class='text-center'><%= link_to "Create a New Show", new_show_path, class: 'style-1' %></p>
+    <% if current_user.present? %>
+    <p class='text-center'>current user:  <%= link_to current_user.name, user_path(current_user), class: 'style-1' %></p>
+    <p class='text-center'><%= link_to "Logout", logout_path, class: 'style-1' %></p>
+    <% else %>
+      <p class='text-center'><%= link_to "Login", login_path, class: 'style-1'  %></p>
+      <p class='text-center'><%= link_to'Log in with Facebook', '/auth/facebook', class: 'style-1' %></p>
+      <p class='text-center'><%= link_to "Sign Up", new_user_path, class: 'style-1'  %></p>
+    <% end %>
+  <% end %>
+
+</footer>

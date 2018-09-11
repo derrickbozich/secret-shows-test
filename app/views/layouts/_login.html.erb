@@ -1,0 +1,27 @@
+
+
+
+
+
+  <%= form_tag'/login', class: 'form-signin'   do  %>
+
+    <%= content_tag :div, class: "text-center" do %>
+      <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Secret Shows</h1>
+      <p>Login to create and edit events</p>
+
+    <% end %>
+    <%= content_tag :div, class: "form-label-group mx-sm-7 mb-2" do %>
+      <%= label_tag :email %>
+      <%= text_field_tag :email, nil, {class: "form-control", placeholder: "Email address", style: 'width: 30%'} %>
+    <% end %>
+    <%= content_tag :div, class: "form-label-group" do %>
+      <%= label_tag :password %>
+      <%= text_field_tag :password, nil, {class: "form-control" , placeholder: "Password",style: 'width: 30%'} %>
+    <% end %>
+
+    <p><%= submit_tag("Sign in", {class: "btn btn-lg btn-primary btn-block mb-2 my-4", style: 'width: 30%'}) %></p>
+    <%= content_tag :p, class: "mt-5 mb-3 text-muted text-center" do %>
+      © 2017-2018
+    <% end %>
+  <% end %>

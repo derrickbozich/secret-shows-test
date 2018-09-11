@@ -1,8 +1,29 @@
-<h1><%= @artist.name %></h1>
-<p><%= image_tag @artist.image %></p>
-<ul>
-  <% @artist.shows.each do |show| %>
-    <li><%= link_to show.name, show_path(show) %></li>
-
+<%= content_tag :div, class: 'card-deck' do %>
+  <%= card style: "width: 18rem" do %>
+    <%= card_block src: @artist.image  %>
+    <%= card_header @artist.name %>
   <% end %>
-</ul>
+
+  <!-- <div class="card w-50 ">
+    <div class="card-body">
+      <h5 class="card-title">Upcoming Shows</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+      </ul>
+    </div>
+  </div> -->
+
+  <%= card  do %>
+    <%= card_body do %>
+      <%= card_title "Upcoming Shows" %>
+
+
+        <%= render 'shows_li', shows: @artist.shows %>
+
+    <% end %>
+  <% end %>
+
+
+<% end %>

@@ -5,6 +5,7 @@ class Show < ApplicationRecord
   has_one :venue, through: :show_venue
   has_one :city_show
   has_one :city, through: :city_show
+  belongs_to :user
 
   validates :name, presence: true
 
@@ -42,7 +43,7 @@ class Show < ApplicationRecord
   end
 
   def self.upcoming_shows
-    Show.where("date > ?", Date.today).order('date asc').select do |s|
+    Show.where("date >= ?", Date.today).order('date asc').select do |s|
       s.date.present?
     end
   end

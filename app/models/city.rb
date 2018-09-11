@@ -5,4 +5,10 @@ class City < ApplicationRecord
   has_many :shows, through: :city_shows
 
   validates :name, presence: true
+
+  def self.alphabetize
+    result = City.all.sort_by {|city| city.name}
+  end
+
+    
 end

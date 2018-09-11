@@ -1,6 +1,4 @@
-<h1><%= link_to @venue.name %></h1>
-<ul>
-  <% @venue.shows.each do |show| %>
-    <li><%= link_to show.name, show_path(show) %> <%= show.date %></li>
-  <% end %>
-</ul>
+<h1><%= @venue.name %></h1>
+
+
+<%= render 'shows/shows', shows: @venue.shows %>
