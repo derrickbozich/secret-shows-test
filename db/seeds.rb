@@ -28,30 +28,30 @@ aa.save
 
 s.save
 
-s = Show.find_or_create_by(name: "Daft Punk at The Palace")
-v = Venue.find_or_create_by(name: "The Palace")
-c = City.find_or_create_by(name: "Paris")
-a = Artist.find_or_create_by(name: "Daft Punk")
-aa = Artist.find_or_create_by(name: "Ladytron")
+s = Show.find_or_create_by(name: "Depeche Mode at The Rose Bowl")
+v = Venue.find_or_create_by(name: "The Rose Bowl")
+c = City.find_or_create_by(name: "Los Angeles")
+a = Artist.find_or_create_by(name: "Depeche Mode")
+aa = Artist.find_or_create_by(name: "OMD")
 
 s.city = c
 s.artists << a
 s.artists << aa
 s.venue = v
 s.date = Date.today + (rand * 21)
-a.image = 'https://photos.bandsintown.com/thumb/226052.jpeg'
-aa.image = 'https://photos.bandsintown.com/thumb/6038183.jpeg'
-s.poster = 'http://cromeyellow.com/wp-content/uploads/2013/06/jaime_cervantes_daft_punk.jpg'
+a.image = 'https://upload.wikimedia.org/wikipedia/en/3/38/Depeche_mode_people_are_people_1984.jpg'
+aa.image = 'https://thumbnailer.mixcloud.com/unsafe/600x600/extaudio/d/f/d/b/67f6-8551-4cb0-b813-3af2ec7f9095'
+s.poster = 'https://cdn.shopify.com/s/files/1/0140/7312/products/depeche_mode.jpg?v=1453250105'
 s.user_id = u.id
 a.save
 aa.save
 
 s.save
 
-s = Show.find_or_create_by(name: "Fever Ray at Red Rocks")
-v = Venue.find_or_create_by(name: "Red Rocks")
-c = City.find_or_create_by(name: "Denver")
-a = Artist.find_or_create_by(name: "Fever Ray")
+s = Show.find_or_create_by(name: "The Clash at Maxwell Hall")
+v = Venue.find_or_create_by(name: "Maxwell Hall")
+c = City.find_or_create_by(name: "London")
+a = Artist.find_or_create_by(name: "The Clash")
 aa = Artist.find_or_create_by(name: "Tears For Fears")
 
 s.city = c
@@ -60,38 +60,38 @@ s.artists << aa
 s.venue = v
 s.date = Date.today + (rand * 21)
 aa.image = 'https://photos.bandsintown.com/thumb/8209771.jpeg'
-a.image = 'https://photos.bandsintown.com/thumb/8248251.jpeg'
-s.poster = 'https://afterdark.co/uploads/events/cc520bc2891f990f4df122aa16234817'
+a.image = 'https://media.pitchfork.com/photos/59298f7213d1975652136b20/1:1/w_300/9513b3de.jpg'
+s.poster = 'https://cdn.shopify.com/s/files/1/0140/7312/products/the_clash_2.jpg?v=1443380813'
 s.user_id = u.id
 a.save
 aa.save
 
 s.save
 
-s = Show.find_or_create_by(name: "Ladytron at Razzmatazz")
-v = Venue.find_or_create_by(name: "The Razzmatazz")
-c = City.find_or_create_by(name: "Barcelona")
-a = Artist.find_or_create_by(name: "Ladytron")
-aa = Artist.find_or_create_by(name: "Glass Candy")
+# s = Show.find_or_create_by(name: "Ladytron at Razzmatazz")
+# v = Venue.find_or_create_by(name: "The Razzmatazz")
+# c = City.find_or_create_by(name: "Barcelona")
+# a = Artist.find_or_create_by(name: "Ladytron")
+# aa = Artist.find_or_create_by(name: "Glass Candy")
+#
+# s.city = c
+# s.artists << a
+# s.artists << aa
+# s.venue = v
+# s.date = Date.today + (rand * 21)
+# a.image = 'https://photos.bandsintown.com/thumb/6038183.jpeg'
+# aa.image = 'https://photos.bandsintown.com/thumb/7255678.jpeg'
+# s.poster = 'https://d9nvuahg4xykp.cloudfront.net/-2755103181664130548/4720790216666622691.jpg'
+# s.user_id = u.id
+# a.save
+# aa.save
+#
+# s.save
 
-s.city = c
-s.artists << a
-s.artists << aa
-s.venue = v
-s.date = Date.today + (rand * 21)
-a.image = 'https://photos.bandsintown.com/thumb/6038183.jpeg'
-aa.image = 'https://photos.bandsintown.com/thumb/7255678.jpeg'
-s.poster = 'https://d9nvuahg4xykp.cloudfront.net/-2755103181664130548/4720790216666622691.jpg'
-s.user_id = u.id
-a.save
-aa.save
-
-s.save
-
-s = Show.find_or_create_by(name: "Beach House at Razzmatazz")
-v = Venue.find_or_create_by(name: "The Razzmatazz")
-c = City.find_or_create_by(name: "Barcelona")
-a = Artist.find_or_create_by(name: "Beach House")
+s = Show.find_or_create_by(name: "Blondie at CGBG")
+v = Venue.find_or_create_by(name: "CGBG")
+c = City.find_or_create_by(name: "New York City")
+a = Artist.find_or_create_by(name: "Blondie")
 aa = Artist.find_or_create_by(name: "Sound of Ceres")
 
 s.city = c
@@ -99,10 +99,10 @@ s.artists << a
 s.artists << aa
 s.venue = v
 s.date = Date.today + (rand * 21)
-s.poster = 'https://11vbnxvrnu2319ljq2tikgn1-wpengine.netdna-ssl.com/wp-content/uploads/2015/10/beach-house-melbourne-2016-tour-poster.jpg'
+s.poster = 'https://cdn.shopify.com/s/files/1/0140/7312/products/blondie.gif?v=1481334417'
 s.user_id = u.id
 
-a.image = 'https://photos.bandsintown.com/thumb/8597665.jpeg'
+a.image = 'https://www.tshirtgrill.com/blog/wp-content/uploads/2015/09/Blondie-300x300.jpg'
 aa.image = 'https://photos.bandsintown.com/thumb/8747678.jpeg'
 
 a.save
@@ -134,7 +134,7 @@ s.save
 
 
 
-s = Show.find_or_create_by(name: "The Velvet Undergroud at The Ogden")
+s = Show.find_or_create_by(name: "The Velvet Underground at The Ogden")
 v = Venue.find_or_create_by(name: "The Ogden")
 c = City.find_or_create_by(name: "Denver")
 a = Artist.find_or_create_by(name: "The Velvet Underground")

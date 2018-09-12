@@ -18,44 +18,49 @@
 
  @import "font-awesome";
 
-
+// Link Styling
  .style-1 {
     color: black;
 }
 
-.style-1:hover,
-.style:focus {
-    color: black;
-    text-decoration: underline;
+  .style-1:hover,
+  .style:focus {
+      color: black;
+      text-decoration: underline;
 
-}
-
+  }
+// input field styling for bootstrap
 .form-control { border: 1px solid black;}
 
-@media (min-width: 768px) {
-  .navbar-expand-lg,
-  .navbar-nav {
-
-    margin: 0;
-    margin-left: -15px;
-  }
-}
-
+// keeps navbar on left edge of container
 .navbar-expand-lg,
 .navbar-nav {
     margin: 0 -15px;
 }
 
-.btn-outline-success, .btn {
-  color: black;
-  border-color: black;
- } //button
+// .navbar .navbar-collapse {
+//   text-align: center;
+// }
 
-.btn-outline-success:hover {
-  background-color: black;
-  border-color: black;
-} //hover
-
+// vertical spacing between show cards
 .card-header {
   padding: .5rem;
+}
+
+//additional classes to add date on top of show cards
+.date-caption {
+    background: #FAFAF9;
+    border-radius: 5%;
+    top:81%;
+    left:79%;
+    position: absolute;
+    color: black;
+    padding: 0 1em;
+    text-align: center;
+    box-shadow: 3px 3px 3px #aaaaaa;
+}
+
+.thumbnail{
+    position:relative;
+
 }

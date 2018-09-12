@@ -1,17 +1,7 @@
 <% if @artists.present? %>
-  <ul>
-    <% @artists.each do |a| %>
-      <li><%= link_to a.name, artist_path(a)  %></li>
-    <% end  %>
-
-  </ul>
+  <%= render 'layouts/collection', collection: @artists %>
 <% elsif @cities.present? %>
-<ul>
-  <% @cities.each do |a| %>
-    <li><%= link_to a.name, city_path(a)  %></li>
-  <% end  %>
-
-</ul>
+  <%= render 'layouts/collection', collection: @cities %>
 <% else %>
   No Search Results
 <% end  %>
