@@ -14,6 +14,8 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery3
+//= require jquery-ui
+//= require jquery.easy-autocomplete
 //= require popper
 //= require bootstrap
 //= require_tree .

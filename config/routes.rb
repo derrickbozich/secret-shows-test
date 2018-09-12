@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#logout'
   get '/auth/facebook/callback' => 'sessions#create'
 
-  get '/search' => "artists#search", as: 'search_artists'
+
+  get 'search' => 'main#search', as: 'search'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -40,6 +40,12 @@ gem 'sprockets-rails'
 
 gem "font-awesome-rails"
 
+gem 'jquery-ui-rails'
+
+gem 'ransack'
+
+
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

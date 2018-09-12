@@ -24,9 +24,9 @@
     </ul>
 
 
-    <%= form_tag search_artists_path, {method: 'get', class: 'form-inline my-2 my-lg-0' } do %>
-      <%= text_field_tag :query, nil, {placeholder: "search for artists and concerts", class: "form-control mr-sm-2 " }  %>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <%= form_with url: search_path, local: true, method: 'get', html:{ class:'form-inline my-2 my-lg-0'} do |f| %>
+      <%= f.text_field :q, placeholder: "search for artists and cities", data: { behavior: 'autocomplete'}, class: "form-control mr-sm-2 "  %>
+      <%= f.button "Search", class: 'btn btn-outline-success my-2 my-sm-0'  %>
     <% end %>
 
 

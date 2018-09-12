@@ -1,0 +1,17 @@
+<% if @artists.present? %>
+  <ul>
+    <% @artists.each do |a| %>
+      <li><%= link_to a.name, artist_path(a)  %></li>
+    <% end  %>
+
+  </ul>
+<% elsif @cities.present? %>
+<ul>
+  <% @cities.each do |a| %>
+    <li><%= link_to a.name, city_path(a)  %></li>
+  <% end  %>
+
+</ul>
+<% else %>
+  No Search Results
+<% end  %>

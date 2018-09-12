@@ -1,5 +1,11 @@
 # README
+autofill for forms and search
+get date to hover over show poster on show index
+get login and signup to look right
+add more than two artists
 
+
+artists.select { |artist| query.include?(artist.name)}.map{|artist| artist.to_json}
 
 
 def time_rand from = 0.0, to = Time.now
