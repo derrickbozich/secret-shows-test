@@ -43,24 +43,55 @@
 // }
 
 // vertical spacing between show cards
-.card-header {
-  padding: .5rem;
-}
+// .card-header {
+//   padding: .5rem;
+// }
 
 //additional classes to add date on top of show cards
-.date-caption {
+.card-img-overlay
+{
+    position: absolute;
     background: #FAFAF9;
     border-radius: 5%;
-    top:81%;
-    left:79%;
-    position: absolute;
+    top:86%;
+    left:80%;
+    // display:inline;
+    // font-size: 50%;
     color: black;
-    padding: 0 1em;
     text-align: center;
-    box-shadow: 3px 3px 3px #aaaaaa;
+
+    padding: .1rem 0;
 }
+
+//had to put card images in a thumbnail to absolutely position card-img-overlay
+
 
 .thumbnail{
     position:relative;
+}
 
+// .small-screen-disappear{
+//   display: inline;
+// }
+
+
+// bigger iphone
+@media only screen and (max-width: 735px) {
+    /* For mobile phones: */
+
+}
+
+// make hamburger stay on right for very small screens
+@media (max-width: 320px) {
+    /* For mobile phones: */
+  .nav-link  {
+    padding: 0 ;
+  }
+}
+
+@media (min-height: 799px) {
+  .card-img-overlay {
+    top:90%;
+    font-size: 150%;
+  }
 }

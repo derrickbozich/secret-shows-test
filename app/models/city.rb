@@ -10,5 +10,9 @@ class City < ApplicationRecord
     result = City.all.sort_by {|city| city.name}
   end
 
-    
+  def upcoming_shows
+    self.shows.where('date >= ? ', Date.today).order('date asc')
+  end
+
+
 end

@@ -6,7 +6,6 @@
     <p class='text-center'><%= link_to "Logout", logout_path, class: 'style-1' %></p>
     <% else %>
       <p class='text-center'><%= link_to "Login", login_path, class: 'style-1'  %></p>
-      <p class='text-center'><%= link_to'Log in with Facebook', '/auth/facebook', class: 'style-1' %></p>
       <p class='text-center'><%= link_to "Sign Up", new_user_path, class: 'style-1'  %></p>
     <% end %>
   <% end %>

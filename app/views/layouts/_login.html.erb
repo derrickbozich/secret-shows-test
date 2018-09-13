@@ -1,27 +1,35 @@
 
+<div class="d-flex justify-content-center  ">
+  <div class='row'>
+    <%= form_tag'/login', class: 'form-signin'   do  %>
+
+      <%= content_tag :div, class: "text-center" do %>
+
+        <p>Login is only necessary <br> to create or edit events </p>
+      <% end %>
+
+      <%= content_tag :div, class: "form-label-group mx-sm-7 mb-2" do %>
+        <%= label_tag :email %>
+        <%= text_field_tag :email, nil, {class: "form-control", placeholder: "Email address"} %>
+      <% end %>
+
+      <%= content_tag :div, class: "form-label-group mx-sm-7 mb-2" do %>
+        <%= label_tag :password %>
+        <%= text_field_tag :password, nil, {class: "form-control" , placeholder: "Password"} %>
+      <% end %>
+
+      <p><%= submit_tag("Login", {class: "btn btn-lg btn-dark btn-block mb-2 my-4"}) %></p>
+      <div class='text-center mb-2  '><%= link_to "Sign up", new_user_path, class: 'style-1' %></div>
+      <p class='text-center'><%= link_to'Log in with Facebook', '/auth/facebook', class: 'style-1' %></p>
 
 
+      <%= content_tag :p, class: "mt-5 mb-3 text-muted text-center" do %>
+        © 2018
+      <% end %>
 
 
-  <%= form_tag'/login', class: 'form-signin'   do  %>
-
-    <%= content_tag :div, class: "text-center" do %>
-      <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Secret Shows</h1>
-      <p>Login to create and edit events</p>
 
     <% end %>
-    <%= content_tag :div, class: "form-label-group mx-sm-7 mb-2" do %>
-      <%= label_tag :email %>
-      <%= text_field_tag :email, nil, {class: "form-control", placeholder: "Email address", style: 'width: 30%'} %>
-    <% end %>
-    <%= content_tag :div, class: "form-label-group" do %>
-      <%= label_tag :password %>
-      <%= text_field_tag :password, nil, {class: "form-control" , placeholder: "Password",style: 'width: 30%'} %>
-    <% end %>
 
-    <p><%= submit_tag("Sign in", {class: "btn btn-lg btn-dark btn-block mb-2 my-4", style: 'width: 30%'}) %></p>
-    <%= content_tag :p, class: "mt-5 mb-3 text-muted text-center" do %>
-      © 2017-2018
-    <% end %>
-  <% end %>
+  </div>
+</div>

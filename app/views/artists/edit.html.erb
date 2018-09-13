@@ -1,21 +1,10 @@
 <%= form_for @artist do |f|  %>
-  <% if @artist.errors.any? %>
-   <div id="error_explanation">
-     <h2>There were some errors:</h2>
-     <ul>
-       <% @artist.errors.full_messages.each do |message| %>
-         <li><%= message %></li>
-       <% end %>
-     </ul>
-   </div>
-  <% end %>
+  <%= render 'layouts/errors' object: @artist %>
   <p><%= f.label :name %></p>
-  <p><%= f.text_field :name %></p>
+  <p><%= f.text_field :name, nil, class: 'form-control' %></p>
 
 
 
   <%= f.submit %>
 
-
-
-<% end  %>
+  <% end %>

@@ -1,4 +1,7 @@
+
+
 <h1><%= @city.name %></h1>
 
 
-<%= render 'shows/shows', shows: @city.shows %>
+<%= render 'shows/shows', shows: @city.upcoming_shows %>
+<%= render 'layouts/footer' %>

@@ -2,7 +2,11 @@
 autofill for forms and search
 get date to hover over show poster on show index
 get login and signup to look right
+
 add more than two artists
+find a way for users to upload photos
+show descriptions
+figure out how to make unformatted photos fit 
 
 
 artists.select { |artist| query.include?(artist.name)}.map{|artist| artist.to_json}

@@ -3,14 +3,19 @@
     <%= content_tag :div, class: "col-lg-4 my-3" do %>
       <%= card style: "width: 100%" do %>
         <div class="thumbnail">
-          <a href="<%= show_path(show) %>"><%= card_block src: show.poster, class: 'img-fluid'  %></a>
-           <div class="date-caption">
-              <p class="my-0 "><%= show.date.strftime("%b") %></p>
-              <h2 class="my-0 "><%= show.date.strftime("%d") %></h2>
-              <span class="my-0 "><%= show.date.strftime("%a") %></span>
-          </div>
+          <a href="<%= show_path(show) %>" ><%= card_block src: show.poster, class: 'img-fluid' %>
+            <div class="card-img-overlay">
+               <div><%= show.date.strftime("%b") %></div>
+               <h4 class="my-0  "><%= show.date.strftime("%d") %></h4>
+               <!-- <div><%= show.date.strftime("%a") %></div> -->
+           </div>
+          </a>
+
+
         </div>
+
         <%= card_header link_to  show.name, show_path(show), :class => 'style-1' %>
+
       <% end %>
     <% end %>
   <% end %>

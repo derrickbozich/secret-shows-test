@@ -4,24 +4,12 @@
     <%= card_header @artist.name %>
   <% end %>
 
-  <!-- <div class="card w-50 ">
-    <div class="card-body">
-      <h5 class="card-title">Upcoming Shows</h5>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-      </ul>
-    </div>
-  </div> -->
+
 
   <%= card  do %>
     <%= card_body do %>
       <%= card_title "Upcoming Shows" %>
-
-
         <%= render 'shows_li', shows: @artist.shows %>
-
     <% end %>
   <% end %>
 

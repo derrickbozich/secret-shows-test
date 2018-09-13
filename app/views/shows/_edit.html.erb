@@ -1,0 +1,6 @@
+<% if current_user %>
+  <% if current_user.id == @show.user.id %>
+    <%= link_to 'Edit Show', edit_show_path(@show), class: 'style-1' %>
+    <%= link_to 'Delete Show', show_path(@show), :method => :delete,  class: 'style-1' %>
+  <% end %>
+<% end %>

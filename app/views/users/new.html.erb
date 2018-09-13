@@ -1,13 +1,2 @@
-<h1>New User Sign-up</h1>
 
-  <%= form_for @user do |f| %>
-    <%= render 'layouts/errors', object: @user  %>
-
-    <p><%= f.label :name %></p>
-    <p><%= f.text_field :name %></p>
-    <p><%= f.label :email %></p>
-    <p><%= f.text_field :email %></p>
-    <p><%= f.label :password %></p>
-    <p><%= f.text_field :password %></p>
-    <p><%= f.submit %></p>
-  <% end  %>
+<%= render 'layouts/signup' %>

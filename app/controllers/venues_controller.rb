@@ -18,6 +18,7 @@ class VenuesController < ApplicationController
       flash[:success] = "Venue Edited!"
       redirect_to shows_path
     else
+      flash[:error] = "Venue Edit Failed"
       render 'edit'
     end
   end

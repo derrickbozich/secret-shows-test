@@ -1,31 +1,29 @@
-<nav class="navbar navbar-expand-lg  ">
-  <a class="navbar-brand style-1" href="/shows"><h1>Secret Shows</h1></a>
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand style-1  " href="/shows"><h1>Secret Shows</h1></a>
+
+  <div class="nav-item dropdown">
+    <div class="nav-item dropdown">
+
+      <a class="nav-link  style-1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= fa_icon "bars" %>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <%= link_to 'Add a Show', new_show_path, :class => "dropdown-item " %>
+        <%= link_to "Cities", cities_path, :class => "dropdown-item "  %>
+        <%=  login_logout_link  %>
+      </div>
+    </div>
+  </div>
+
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle style-1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Cities
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= render 'cities/city_links' %>
-        </div>
-      </li> -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle style-1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Menu
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to 'Create a Show', new_show_path, :class => "dropdown-item " %>
-          <%=  login_logout_link  %>
-        </div>
-      </li>
     </ul>
 
 
     <%= form_with url: search_path, local: true, method: 'get', html:{ class:'form-inline my-2 my-lg-0'} do |f| %>
-      <%= f.text_field :q, placeholder: "search for artists and cities", data: { behavior: 'autocomplete'}, class: "form-control mr-sm-4"  %>
+      <%= f.text_field :q, placeholder: "search for artists and cities", data: { behavior: 'autocomplete'}, class: "form-control mr-sm-2"  %>
       <%= f.button "Search", class: 'btn btn-outline-dark my-2 my-sm-0'  %>
     <% end %>
 
