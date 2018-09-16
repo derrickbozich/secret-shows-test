@@ -5,4 +5,8 @@ class Venue < ApplicationRecord
   has_one :city, through: :city_venue
 
   validates :name, presence: true
+
+  def upcoming_shows
+    self.shows.where('date >= ?', Date.today).order('date asc')
+  end
 end

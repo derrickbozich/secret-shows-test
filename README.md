@@ -5,8 +5,12 @@ get login and signup to look right
 
 add more than two artists
 find a way for users to upload photos
-show descriptions
-figure out how to make unformatted photos fit 
+show descriptions / artist descriptions
+figure out how to make unformatted photos fit
+add admin functionality
+bandcamp/soundcloud/insta links for bands
+performer profile through user
+
 
 
 artists.select { |artist| query.include?(artist.name)}.map{|artist| artist.to_json}
