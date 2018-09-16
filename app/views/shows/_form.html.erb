@@ -25,12 +25,12 @@
 
         <%= content_tag :div, class: 'form-group col-md-6' do %>
           <%= artist_builder.label "Artist Name" %>
-          <%= artist_builder.text_field :name, class: 'form-control' %>
+          <%= artist_builder.text_field :name, class: 'form-control', placeholder: 'square format please' %>
         <% end %>
 
         <%= content_tag :div, class: 'form-group col-md-6' do %>
           <%= artist_builder.label "Artist Image Link" %>
-          <%= artist_builder.text_field :image, class: 'form-control' %>
+          <%= artist_builder.text_field :image, class: 'form-control', placeholder: 'square format please' %>
         <% end %>
       <% end %>
     <% end  %>
@@ -38,8 +38,8 @@
     <%= content_tag :div, class: 'form-row' do %>
       <!-- Poster Link  -->
       <%= content_tag :div, class: 'form-group col-md-4' do %>
-        <%= f.label :poster %>
-        <%= f.text_field :poster, class: 'form-control' %>
+        <%= f.label  "Show Poster Link" %>
+        <%= f.text_field :poster, class: 'form-control', placeholder: '716 X 1008px format please' %>
       <% end %>
       <!-- Date  -->
       <%= content_tag :div, class: 'form-group col-md-4' do %>
