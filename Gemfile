@@ -10,6 +10,11 @@ gem 'sqlite3'
 # Postgres as databse for Active Record
 # gem 'pg'
 
+gem 'active_model_serializers'
+
+# handlebars to create HTML templates for AJAX requests
+gem 'handlebars_assets'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

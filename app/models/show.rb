@@ -37,8 +37,6 @@ class Show < ApplicationRecord
       self.artists.build(artist_attributes)
       # artist = Artist.find_or_create_by(artist_attributes)
       # ShowArtist.create(show_id: self.id, artist_id: artist.id)
-      binding.pry
-
     end
   end
 

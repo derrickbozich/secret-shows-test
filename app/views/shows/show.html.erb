@@ -3,7 +3,9 @@
   <%= content_tag :div, class: 'col-lg-8' do %>
     <%= image_tag @show.poster, class: 'img-fluid', style: 'width: 100%' %>
     <%= render 'edit' %>
+    <%= link_to "Next Show", "#", class: 'style-1', data: {id: @show.id, city: @show.city.name, city_id: @show.city.id  }, id: 'next-show'  %>
   <% end %>
+
   <%= content_tag :div, class: 'col-lg-4' do %>
 
     <%= render "headline" %>
