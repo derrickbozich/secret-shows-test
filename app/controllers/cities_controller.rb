@@ -12,7 +12,7 @@ class CitiesController < ApplicationController
     @city = City.find_by_id(params[:id])
     respond_to do |format|
       format.html {render :show}
-      format.json {render json: @city}
+      format.json {render json: @city, include: ['shows.venue', 'shows.artists']}
     end
   end
 

@@ -1,23 +1,24 @@
 <div class="row">
   <div class="col-lg-8">
-    <img class="img-fluid" style="width: 100%" src="{{poster}}">
-    <a class="style-1" href="/shows/{{id}}/edit">Edit Show</a>
-    <a class="style-1" rel="nofollow" data-method="delete" href="/shows/1">Delete Show</a>
-    <a class="style-1" data-id="{{id}}" data-city="{{city}}" data-city-id="{{cityId}}" id="next-show" href="#">Next Show</a>
+    <img class="img-fluid" style="width: 100%" src="{{{data.show.poster}}}">
+    <a class="style-1" href="/shows/{{data.show.id}}/edit">Edit Show</a>
+    <a class="style-1" rel="nofollow" data-method="delete" href="/shows/{{data.show.id}}">Delete Show</a>
+    <a class="style-1" data-id="{{data.show.id}}" data-city="{{data.city}}" data-city-id="{{data.cityId}}" id="previous-show" href="#">Previous Show</a>
+    <a class="style-1" data-id="{{data.show.id}}" data-city="{{data.city}}" data-city-id="{{data.cityId}}" id="next-show" href="#">Next Show</a>
   </div>
   <div class="col-lg-4">
-    <h1>{{name}}</h1>
-    <h3>{{month}}</h3>
-    <h1>{{date}}</h1>
-    <h4>{{day}}</h4>
-    <h5>Venue: <a class="style-1" href="/venues/{{venueId}}">{{venueName}}</a></h5>
-  {{#artist}}
+    <h1>{{data.show.name}}</h1>
+    <h3>{{data.month}}</h3>
+    <h1>{{data.dayNumber}}</h1>
+    <h4>{{data.dayOfWeek}}</h4>
+    <h5>Venue: <a class="style-1" href="/venues/{{data.show.venue.id}}">{{data.show.venue.name}}</a></h5>
+  {{#data.show.artists}}
     <div style="width: 100%" class="card">
       <div class="card-block">
-        <a href="/artists/{{id}}"><img src="{{photo}}" class="card-img-top"></a>
+        <a href="/artists/{{id}}"><img src="{{image}}" class="card-img-top"></a>
         <h4 class="card-title"><a class="style-1" href="/artists/1">{{name}}</a></h4>
       </div>
     </div>
-    {{/artist}}
+    {{/data.show.artists}}
   </div>
 </div>

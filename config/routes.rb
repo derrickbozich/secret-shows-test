@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   end
 
   resources :artists, only: [:show,:index]
-  resources :shows
+  resources :shows do
+    resources :venues, only: [:show]
+  end
   resources :users, only: [:new,:create, :show]
   get '/login' => 'sessions#login'
   post '/login' => 'sessions#login'
