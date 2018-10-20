@@ -1,0 +1,21 @@
+<div class="row">
+  {{#show}}
+  <div class="col-lg-4 my-3">
+    <div style="width: 100%" class="card">
+      <div class="card-block">
+        <div class="thumbnail">
+          <a href="/shows/{{id}}"><img src="{{{poster}}}" class="img-fluid card-img-top" data-showid="{{id}}">
+            <div class="card-img-overlay">
+               <div>{{dateFormatter date 'mon'}}</div>
+               <h4 class="my-0">{{dateFormatter date 'dayNumber'}}</h4>
+           </div>
+          </a>
+        </div>
+        <h5 class="card-header">
+          <a class="style-1" href="/shows/{{id}}">{{{name}}}</a>
+        </h5>
+      </div>
+    </div>
+  </div>
+  {{/show}}
+</div>

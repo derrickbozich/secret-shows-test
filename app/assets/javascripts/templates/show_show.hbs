@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-lg-8">
+    <img class="img-fluid" style="width: 100%" src="{{{data.poster}}}">
+    <a class="style-1" href="/shows/{{data.id}}/edit">Edit Show</a>
+    <a class="style-1" rel="nofollow" data-method="delete" href="/shows/{{data.id}}">Delete Show</a>
+    <a class="style-1" data-id="{{data.id}}" data-city-id="{{data.city.id}}" id="previous-show" href="#">Previous Show</a>
+    <a class="style-1" data-id="{{data.id}}" data-city-id="{{data.city.id}}" id="next-show" href="#">Next Show</a>
+  </div>
+  <div class="col-lg-4">
+    <h1>{{data.name}}</h1>
+    <h3>{{dateFormatter data.date 'month'}}</h3>
+    <h1>{{dateFormatter data.date 'dayNumber'}}</h1>
+    <h4>{{dateFormatter data.date 'dayOfWeek'}}</h4>
+    <h5>Venue: <a class="style-1" href="/venues/{{data.venue.id}}">{{data.venue.name}}</a></h5>
+  {{#data.artists}}
+    <div style="width: 100%" class="card">
+      <div class="card-block">
+        <a href="/artists/{{id}}"><img src="{{image}}" class="card-img-top"></a>
+        <h4 class="card-title"><a class="style-1" href="/artists/{{id}}">{{name}}</a></h4>
+      </div>
+    </div>
+    {{/data.artists}}
+  </div>
+</div>

@@ -19,13 +19,19 @@ class ShowsController < ApplicationController
     #   artists_attributes: params[:show][:artists_attributes]
     #   })
 
+
     @show = Show.new(show_params)
     @show.user_id = current_user.id  if current_user
 
 
     if @show.save && ShowArtist.last.save
       flash[:success] = "Show Created!"
-      redirect_to shows_path
+      # without ajax call, we would redirect to the show index page and see the new show
+        # redirect_to shows_path
+      #instead send json info of all shows (including the newly created one)
+      #to get rendered via handlebars in the dom
+      @shows = Show.all
+      render json: @shows
     else
       render 'new'
     end
@@ -33,10 +39,18 @@ class ShowsController < ApplicationController
 
   def index
     @shows = Show.upcoming_shows
+    respond_to do |format|
+      format.html {render :index }
+      format.json {render json: @shows}
+    end
   end
 
   def show
     @show = Show.find_by_id(params[:id])
+    respond_to do |format|
+      format.html {render :show }
+      format.json {render json: @show, include: [:artists, :venue, :city]}
+    end
   end
 
   def edit
