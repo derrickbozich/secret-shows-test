@@ -60,7 +60,7 @@ $(function(){
 
     show.artists_attributes = []
     for (var i = 0; i < artists_attributes.length; i++) {
-      let newArtistsAttributes = []
+      // let newArtistsAttributes = []
       let obj = {name: '', image: ''}
       for (let i = 1; i <= 2 ; i++) {
         let temp = artists_attributes.shift()
@@ -70,8 +70,8 @@ $(function(){
           obj.image = temp.value
         }
       }
-      newArtistsAttributes.push(obj)
-      show.artists_attributes.push(newArtistsAttributes)
+      // newArtistsAttributes.push(obj)
+      show.artists_attributes.push(obj)
     }
 
     show = {show: show}

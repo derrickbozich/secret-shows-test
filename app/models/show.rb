@@ -33,9 +33,13 @@ class Show < ApplicationRecord
   end
 
   def artists_attributes=(artists_attributes)
-    artists_attributes.each do |i, artist_attributes|
-      self.artists.build(artist_attributes)
-      # artist = Artist.find_or_create_by(artist_attributes)
+    binding.pry
+    artists_attributes.each do |artist_attributes|
+      binding.pry
+      # self.artists.build(artist_attributes)
+      artist = Artist.find_or_create_by(artist_attributes)
+      self.artists << artist
+      binding.pry
       # ShowArtist.create(show_id: self.id, artist_id: artist.id)
     end
   end
