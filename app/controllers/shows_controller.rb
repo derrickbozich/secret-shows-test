@@ -2,9 +2,7 @@ class ShowsController < ApplicationController
   def new
     if logged_in?
       @show = Show.new
-      # @show.artists.build
       @show.artists.build
-
     else
       flash[:error] = "You Must Login to Create A Show"
       redirect_to shows_path
@@ -13,19 +11,14 @@ class ShowsController < ApplicationController
   end
 
   def create
-    binding.pry
+
     # s = Show.create({
     #   city_name: params[:show][:city_name],
     #   venue_name: params[:show][:venue_name],
     #   artists_attributes: params[:show][:artists_attributes]
     #   })
-
-
-
-
     @show = Show.new(show_params)
     @show.user_id = current_user.id  if current_user
-    binding.pry
 
     if @show.save && ShowArtist.last.save
       flash[:success] = "Show Created!"
