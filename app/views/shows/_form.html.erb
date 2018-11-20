@@ -21,7 +21,7 @@
 
     <!-- Artist Names/Images  -->
     <%= f.fields_for :artists do |artist_builder| %>
-      <%= content_tag :div, class: 'form-row' do %>
+      <%= content_tag :div, class: 'form-row', id: 'artists-form' do %>
 
         <%= content_tag :div, class: 'form-group col-md-6' do %>
           <%= artist_builder.label "Artist Name" %>
@@ -34,6 +34,9 @@
         <% end %>
       <% end %>
     <% end  %>
+
+    <%= button_tag "Add Artist", type: 'button', class: 'btn btn-outline', id: 'add-artist' %>
+
 
     <%= content_tag :div, class: 'form-row' do %>
       <!-- Poster Link  -->
