@@ -93,6 +93,7 @@ $(function(){
       .then(data => {
           const html = HandlebarsTemplates['show_index']({ show: data });
           $('.new_show').replaceWith(html);
+          $('#city-name').remove()
           history.pushState({}, '','/shows')
       })
   })
@@ -103,12 +104,15 @@ $(function(){
     $.getJSON(`/shows`, response =>{
       const html = HandlebarsTemplates['show_index']({ show: response });
       if ($('.row').length > 0) {
+        $('#city-name').remove()
         $('.row').replaceWith(html);
         history.pushState({}, '','/shows')
       } else if ($('#new_show').length > 0) {
+        $('#city-name').remove()
         $('#new_show').replaceWith(html);
         history.pushState({}, '','/shows')
       } else {
+        $('#city-name').remove()
         $('.card-deck').replaceWith(html);
         history.pushState({}, '','/shows')
       }
@@ -122,31 +126,32 @@ $(function(){
     if (event.toElement.href) {
       href = event.toElement.href
     } else {
+      //get rid of 'http://localhost'
       href = event.toElement.parentElement.href.substring(21) ;
     }
-    //  get to shows to get a JSON object back to render to dom
+    // get request to shows/artists to get a JSON object back to render to dom
     // if href is for shows:
     if (href.includes('shows')) {
       $.getJSON(href, response =>{
         const html = HandlebarsTemplates['show_show']({ data: response });
         if ($('.row').length > 0) {
+          $('#city-name').remove()
           $('.row').replaceWith(html);
           history.pushState({}, '', href)
         } else {
+          $('#city-name').remove()
           $('.card-deck').replaceWith(html);
           history.pushState({}, '', href)
         }
-
       })
     } else {
       // if href is for artists
       $.getJSON(href, response =>{
         const html = HandlebarsTemplates['artist_show']({ artist: response });
+        $('#city-name').remove()
         $('.row').replaceWith(html);
         history.pushState({}, '', href)
       })
     }
-
   })
-
 })
