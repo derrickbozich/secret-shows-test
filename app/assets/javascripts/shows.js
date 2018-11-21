@@ -117,15 +117,26 @@ $(function(){
 
   $(document).on('click','.card', event =>{
     event.preventDefault();
-    debugger
-    const href = event.toElement.parentElement.href.substring(21) ;
+
+    let href
+    if (event.toElement.href) {
+      href = event.toElement.href
+    } else {
+      href = event.toElement.parentElement.href.substring(21) ;
+    }
     //  get to shows to get a JSON object back to render to dom
     // if href is for shows:
     if (href.includes('shows')) {
       $.getJSON(href, response =>{
         const html = HandlebarsTemplates['show_show']({ data: response });
-        $('.row').replaceWith(html);
-        history.pushState({}, '', href)
+        if ($('.row').length > 0) {
+          $('.row').replaceWith(html);
+          history.pushState({}, '', href)
+        } else {
+          $('.card-deck').replaceWith(html);
+          history.pushState({}, '', href)
+        }
+
       })
     } else {
       // if href is for artists
