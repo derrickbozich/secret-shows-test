@@ -59,7 +59,6 @@ class ShowFinder{
         const dateObj = new DateFormatter(show.date)
         const fullData = Object.assign({dateObj, show, cityId: this.cityId}, {});
         const html = HandlebarsTemplates['city_show']({ data: fullData })
-        $('#city-name').remove()
         $('.row').replaceWith(html)
       // no more previous shows
       } else {

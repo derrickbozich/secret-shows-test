@@ -11,91 +11,126 @@ $(function(){
     $('#artists-form').append(html);
   })
 
+  function validate(){
+
+    let elements = document.getElementsByClassName("form-control");
+
+    for (let i = 1; i < elements.length; i++) {
+      switch (elements[i].value) {
+        case '':
+          elements[i].className = elements[i].className + ' error'
+          break;
+        default:
+          elements[i].className = elements[i].className.replace('error','');
+          break
+      }
+    }
+
+    let readyToSubmit = true
+    for (let i = 1; i < elements.length; i++) {
+      if (elements[i].className.includes(' error')) {
+        readyToSubmit = false
+      }
+    }
+    return readyToSubmit
+  }
+
 
   $(document).on('click','#create-show', event =>{
     event.preventDefault();
 
-    //serialize form data for active record
-    let elements = document.getElementById("new_show").elements;
-    let show ={};
-    let authenticity_token = ''
-    let items = []
-    // make an array of object that have name and value props
-    for (let i = 0; i < elements.length; i++) {
-      let item = elements.item(i)
-      items.push({name: item.name, value: item.value})
-    }
-
-    // find all items that have artist attributes and collect in an array
-    let artists_attributes = items.filter(item => {
-      return item.name.includes('artists_attributes')
-    })
-
-    //cutting off 'show[name]' so it is just 'name'
-    // then go through a switch statement to add to final
-    // active record object
-    items.forEach(item => {
-      if (item.name.includes('authenticity_token')) {
-        authenticity_token = item.value
-      }
-      let i = item.name.slice(5)
-      let ii = i.substring(0, i.length-1)
-      item.name = ii
-      switch (item.name) {
-        case 'name':
-          show.name = item.value
-          break;
-        case 'city_name':
-          show.city_name = item.value
-          break;
-        case 'venue_name':
-          show.venue_name = item.value
-          break;
-        case 'poster':
-          show.poster = item.value
-          break;
-        case 'date':
-          show.date = item.value
-          break;
-        case 'time':
-          show.time = item.value
-          break;
-        default:
-      }
-    })
-
-    // format artist attributes in a way that active record likes
-    show.artists_attributes = []
-    for (var i = 0; i < artists_attributes.length; i++) {
-      let obj = {}
-      if (i % 2 === 0) {
-        obj = {name: '', image: ''}
-        obj.name = artists_attributes[i].value
-        obj.image = artists_attributes[i+1].value
-        show.artists_attributes.push(obj)
+    function gatekeeper(){
+      if (validate()) {
+        serialize()
+      } else {
+        return
       }
     }
 
-    // final output
-    show = {show: show}
+    gatekeeper()
 
-    fetch('/shows', {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            'X-CSRF-Token': authenticity_token
-            // "Content-Type": "application/x-www-form-urlencoded",
-        },
+    function serialize(){
+      //serialize form data for active record
+      let elements = document.getElementById("new_show").elements;
+      let show ={};
+      let authenticity_token = ''
+      let items = []
+      // make an array of object that have name and value props
+      for (let i = 0; i < elements.length; i++) {
+        let item = elements.item(i)
+        items.push({name: item.name, value: item.value})
+      }
 
-        body: JSON.stringify(show) // body data type must match "Content-Type" header
-    }).then((res) => res.json())
-      .then(data => {
-          const html = HandlebarsTemplates['show_index']({ show: data });
-          $('.new_show').replaceWith(html);
-          $('#city-name').remove()
-          history.pushState({}, '','/shows')
+      // find all items that have artist attributes and collect in an array
+      let artists_attributes = items.filter(item => {
+        return item.name.includes('artists_attributes')
       })
+
+      //cutting off 'show[name]' so it is just 'name'
+      // then go through a switch statement to add to final
+      // active record object
+      items.forEach(item => {
+        if (item.name.includes('authenticity_token')) {
+          authenticity_token = item.value
+        }
+        let i = item.name.slice(5)
+        let ii = i.substring(0, i.length-1)
+        item.name = ii
+        switch (item.name) {
+          case 'name':
+            show.name = item.value
+            break;
+          case 'city_name':
+            show.city_name = item.value
+            break;
+          case 'venue_name':
+            show.venue_name = item.value
+            break;
+          case 'poster':
+            show.poster = item.value
+            break;
+          case 'date':
+            show.date = item.value
+            break;
+          case 'time':
+            show.time = item.value
+            break;
+          default:
+        }
+      })
+
+      // format artist attributes in a way that active record likes
+      show.artists_attributes = []
+      for (var i = 0; i < artists_attributes.length; i++) {
+        let obj = {}
+        if (i % 2 === 0) {
+          obj = {name: '', image: ''}
+          obj.name = artists_attributes[i].value
+          obj.image = artists_attributes[i+1].value
+          show.artists_attributes.push(obj)
+        }
+      }
+
+      // final output
+      show = {show: show}
+
+      fetch('/shows', {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          credentials: "same-origin", // include, *same-origin, omit
+          headers: {
+              "Content-Type": "application/json; charset=utf-8",
+              'X-CSRF-Token': authenticity_token
+              // "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: JSON.stringify(show) // body data type must match "Content-Type" header
+      }).then((res) => res.json())
+        .then(data => {
+            const html = HandlebarsTemplates['show_index']({ show: data });
+            $('.new_show').replaceWith(html);
+            $('#city-name').remove()
+            history.pushState({}, '','/shows')
+        })
+    }
   })
 
   $(document).on('click','#show-index', event =>{

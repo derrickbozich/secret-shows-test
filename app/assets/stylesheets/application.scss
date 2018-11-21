@@ -23,12 +23,12 @@
     color: black;
 }
 
-  .style-1:hover,
-  .style:focus {
-      color: black;
-      text-decoration: underline;
+.style-1:hover,
+.style:focus {
+    color: black;
+    text-decoration: underline;
+}
 
-  }
 // input field styling for bootstrap
 .form-control { border: 1px solid black;}
 
@@ -38,19 +38,8 @@
     margin: 0 -15px;
 }
 
-// .navbar .navbar-collapse {
-//   text-align: center;
-// }
-
-// vertical spacing between show cards
-// .card-header {
-//   padding: .5rem;
-// }
-
-// did this to keep footer at bottom of page
-// html,body{
-//     height: 100%
-// }
+//error class for invalid fields
+.error { border: 1px solid red; }
 
 //additional classes to add date on top of show cards
 .card-img-overlay
