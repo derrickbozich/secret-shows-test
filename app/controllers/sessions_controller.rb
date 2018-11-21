@@ -17,14 +17,29 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # @user = User.find_by_id(auth['uid'])
+    # binding.pry
+    # if @user
+    #   session[:user_id] = @user.id
+    # else
+    #   @user = User.create(id: auth['uid'],
+    #                       name: auth['info']['name'],
+    #                       email: auth['info']['email'],
+    #                       password: 'abc')
+    #  session[:user_id] = @user.id
+    # end
+
     @user = User.find_or_create_by(id: auth['uid']) do |u|
       u.name = auth['info']['name']
       u.email = auth['info']['email']
+      # u.password = 'ab'
       # u.image = auth['info']['image']
     end
 
-    session[:user_id] = @user.id
 
+    session[:user_id] = @user.id
+    # @current_user = @user
+    binding.pry
     redirect_to shows_path
   end
 

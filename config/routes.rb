@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#login'
   post '/login' => 'sessions#login'
   get '/logout' => 'sessions#logout'
-  get '/auth/facebook/callback' => 'sessions#create'
+  # get '/auth/google' => 'sessions#create'
+  get '/auth/google_oauth2/callback' => 'sessions#create'
 
 
   get 'search' => 'main#search', as: 'search'

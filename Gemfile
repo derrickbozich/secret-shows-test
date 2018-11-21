@@ -40,6 +40,8 @@ gem 'omniauth-facebook'
 gem 'dotenv-rails'
 gem 'thin'
 
+gem 'omniauth-google-oauth2'
+
 # gem 'bootstrap'
 gem 'jquery-rails'
 gem 'bootstrap'
