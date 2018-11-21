@@ -93,56 +93,49 @@ $(function(){
       .then(data => {
           const html = HandlebarsTemplates['show_index']({ show: data });
           $('.new_show').replaceWith(html);
+          history.pushState({}, '','/shows')
       })
-
-    //  post to shows to get a JSON object back to render to dom
-    // $.post('/shows', data, response =>{
-    //   debugger
-    //   const html = HandlebarsTemplates['show_index']({ show: response });
-    //   $('.new_show').replaceWith(html);
-    // })
   })
 
   $(document).on('click','#show-index', event =>{
     event.preventDefault();
-    //  post to shows to get a JSON object back to render to dom
-    // fetch('/shows', {
-    //   headers: {
-    //       "Content-Type": "application/json; charset=utf-8"
-    //   }
-    // }).then(res => res.json())
-    //   .then(data => {
-    //     debugger
-    //     const html = HandlebarsTemplates['show_index']({ show: data });
-    //     $('.row').replaceWith(html);
-    //   })
+
     $.getJSON(`/shows`, response =>{
       const html = HandlebarsTemplates['show_index']({ show: response });
-      $('.row').replaceWith(html);
+      if ($('.row').length > 0) {
+        $('.row').replaceWith(html);
+        history.pushState({}, '','/shows')
+      } else if ($('#new_show').length > 0) {
+        $('#new_show').replaceWith(html);
+        history.pushState({}, '','/shows')
+      } else {
+        $('.card-deck').replaceWith(html);
+        history.pushState({}, '','/shows')
+      }
     })
-
   })
-  // const html = HandlebarsTemplates['show_index']({ show: data });
-  // $('.row').replaceWith(html);
-
-
 
   $(document).on('click','.card', event =>{
     event.preventDefault();
-    let id
-    if (event.toElement.dataset.showid === undefined) {
-      id = event.target.dataset.id
-    } else {
-      id = event.toElement.dataset.showid
-    }
-    // const id = event.toElement.dataset.showid
-    // const id = event.target.dataset.id
-    //  post to shows to get a JSON object back to render to dom
     debugger
-    $.getJSON(`/shows/${id}`, response =>{
-      const html = HandlebarsTemplates['show_show']({ data: response });
-      $('.row').replaceWith(html);
-    })
+    const href = event.toElement.parentElement.href.substring(21) ;
+    //  get to shows to get a JSON object back to render to dom
+    // if href is for shows:
+    if (href.includes('shows')) {
+      $.getJSON(href, response =>{
+        const html = HandlebarsTemplates['show_show']({ data: response });
+        $('.row').replaceWith(html);
+        history.pushState({}, '', href)
+      })
+    } else {
+      // if href is for artists
+      $.getJSON(href, response =>{
+        const html = HandlebarsTemplates['artist_show']({ artist: response });
+        $('.row').replaceWith(html);
+        history.pushState({}, '', href)
+      })
+    }
+
   })
 
 })

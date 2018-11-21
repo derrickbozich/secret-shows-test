@@ -16,7 +16,7 @@
 
     <% @show.artists.each do |artist| %>
       <%= card style: "width: 100%" do  %>
-        <a href="<%= artist_path(artist) %>"><%= card_block src: artist.image %></a>
+        <a href="<%= artist_path(artist) %>"><%= card_block src: artist.image, data: {id: artist.id} %></a>
         <%= card_title link_to artist.name, artist_path(artist), class: 'style-1' %>
       <% end %>
     <% end %>
