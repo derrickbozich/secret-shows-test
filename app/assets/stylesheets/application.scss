@@ -41,6 +41,12 @@
 //error class for invalid fields
 .error { border: 1px solid red; }
 
+//error class for invalid field messages
+.feedback {
+   color: red;
+   font-size: small;
+ }
+
 //additional classes to add date on top of show cards
 .card-img-overlay
 {

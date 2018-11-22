@@ -3,7 +3,6 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(function(){
-
   $(document).on('click','#add-artist', event =>{
     event.preventDefault();
     // generate additional form fields for artists
@@ -12,18 +11,64 @@ $(function(){
   })
 
   function validate(){
-
     let elements = document.getElementsByClassName("form-control");
-
     for (let i = 1; i < elements.length; i++) {
-      switch (elements[i].value) {
-        case '':
-          elements[i].className = elements[i].className + ' error'
+
+      const handleValidation = (id, message, type) => {
+        if (elements[i].value.length > 0 && typeof elements[i].value === type) {
+          return
+        } else {
+          document.getElementById(id).innerHTML = message
+          elements[i].className = elements[i].className + " error"
+        }
+      }
+
+      switch (elements[i].name) {
+        case 'show[name]':
+          handleValidation('feedback-name', 'shows must have a name', 'string')
+          break;
+        case 'show[city_name]':
+          handleValidation('feedback-city-name', 'city name is required', 'string')
+          break;
+        case 'show[venue_name]':
+          handleValidation('feedback-venue-name', 'venue name is required', 'string')
+          break;
+        case 'show[artists_attributes][0][name]':
+          handleValidation('feedback-artist-name', 'at least one artist name is required', 'string')
+          break;
+        case 'show[artists_attributes][0][image]':
+          handleValidation('feedback-artist-image', 'artists need a valid image link', 'string')
+          break;
+        case 'show[artists_attributes][][name]':
+          handleValidation('feedback-artist-name', 'names must be longer than one character', 'string')
+          break;
+        case 'show[artists_attributes][][image]':
+          handleValidation('feedback-artist-image', 'artists need a valid image link', 'string')
+          break;
+        case 'show[poster]':
+          handleValidation('feedback-poster', 'a show needs a flyer, or a default will be provided', 'string')
+          break;
+        case 'show[date]':
+          handleValidation('feedback-date', 'a date is required', 'string')
+          break;
+        case 'show[time]':
+          handleValidation('feedback-time', 'a time is required', 'string')
           break;
         default:
-          elements[i].className = elements[i].className.replace('error','');
-          break
       }
+
+      // switch (elements[i].value) {
+      //   case '':
+      //     if (elements[i].className.includes(' error')) {
+      //       break;
+      //     } else {
+      //       elements[i].className = elements[i].className + ' error'
+      //       break;
+      //     }
+      //   default:
+      //     elements[i].className = elements[i].className.replace('error','');
+      //     break
+      // }
     }
 
     let readyToSubmit = true

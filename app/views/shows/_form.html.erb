@@ -1,21 +1,24 @@
 
-  <%= form_for @show do |f|  %>
+  <%= form_for @show,  html: {class: "needs-validation"} do |f|  %>
     <%= render 'layouts/errors', object: @show %>
     <%= content_tag :div, class: 'form-row' do %>
       <!-- Show Name  -->
       <%= content_tag :div, class: 'form-group col-md-4' do %>
         <%= f.label "Show Name" %>
         <%= f.text_field :name, class: 'form-control' %>
+        <%= content_tag(:div, '', id: "feedback-name", class: 'feedback') %>
       <% end %>
       <!-- City Name  -->
       <%= content_tag :div, class: 'form-group col-md-4' do %>
         <%= f.label :city_name %>
         <%= f.text_field :city_name, class: 'form-control' %>
+        <%= content_tag(:div, '', id: "feedback-city-name", class: 'feedback') %>
       <% end %>
       <!-- Venue Name  -->
       <%= content_tag :div, class: 'form-group col-md-4' do %>
         <%= f.label :venue_name %>
         <%= f.text_field :venue_name, class: 'form-control' %>
+        <%= content_tag(:div, '', id: "feedback-venue-name", class: 'feedback') %>
       <% end %>
     <% end %>
 
@@ -25,17 +28,21 @@
 
         <%= content_tag :div, class: 'form-group col-md-6' do %>
           <%= artist_builder.label "Artist Name" %>
-          <%= artist_builder.text_field :name, class: 'form-control', placeholder: 'square format please' %>
+          <%= artist_builder.text_field :name, class: 'form-control', placeholder: 'Artist Name' %>
+          <%= content_tag(:div, '', id: "feedback-artist-name", class: 'feedback') %>
+
         <% end %>
 
         <%= content_tag :div, class: 'form-group col-md-6' do %>
           <%= artist_builder.label "Artist Image Link" %>
           <%= artist_builder.text_field :image, class: 'form-control', placeholder: 'square format please' %>
+          <%= content_tag(:div, '', id: "feedback-artist-image", class: 'feedback') %>
+
         <% end %>
       <% end %>
     <% end  %>
 
-    <%= button_tag "Add Another Artist Field", type: 'button', class: 'col-md-4 btn btn-dark', id: 'add-artist' %>
+    <%= button_tag "Add Another Artist Field", type: 'button', class: 'col-md-4 btn btn-dark mb-2', id: 'add-artist' %>
 
 
     <%= content_tag :div, class: 'form-row' do %>
@@ -43,18 +50,25 @@
       <%= content_tag :div, class: 'form-group col-md-4' do %>
         <%= f.label  "Show Poster Link" %>
         <%= f.text_field :poster, class: 'form-control', placeholder: '716 X 1008px format please' %>
+        <%= content_tag(:div, '', id: "feedback-poster", class: 'feedback') %>
+
       <% end %>
       <!-- Date  -->
       <%= content_tag :div, class: 'form-group col-md-4' do %>
         <%= f.label :date %>
         <%= f.date_field :date, {class: 'form-control', placeholder: 'yyyy/mm/dd'} %>
         <!-- <%= f.date_select :date, class: 'form-control' %> -->
+        <%= content_tag(:div, '', id: "feedback-date", class: 'feedback') %>
+
+
       <% end %>
       <!-- Time -->
       <%= content_tag :div, class: 'form-group col-md-4' do %>
         <%= f.label :time %>
         <%= f.time_field :time, {class: 'form-control', placeholder: 'military time'} %>
         <!-- <%= f.time_select :time, ampm: true, class: 'form-control' %> -->
+        <%= content_tag(:div, '', id: "feedback-time", class: 'feedback') %>
+
 
       <% end %>
     <% end %>

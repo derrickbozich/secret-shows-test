@@ -29,7 +29,7 @@ class ShowsController < ApplicationController
       @shows = Show.all
       render json: @shows
     else
-      render 'new'
+      render :new
     end
   end
 
