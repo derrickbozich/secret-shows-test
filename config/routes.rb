@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :venues, only: [:show, :index, :edit, :update]
 
   resources :cities, only: [:show,:index] do
@@ -16,7 +17,9 @@ Rails.application.routes.draw do
   resources :shows do
     resources :venues, only: [:show]
   end
-  resources :users, only: [:new,:create, :show]
+
+  # resources :users, only: [:new,:create, :show]
+
   get '/login' => 'sessions#login'
   post '/login' => 'sessions#login'
   get '/logout' => 'sessions#logout'
@@ -25,6 +28,8 @@ Rails.application.routes.draw do
 
 
   get 'search' => 'main#search', as: 'search'
+
+  root to: "shows#index"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

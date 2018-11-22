@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-u = User.create!(:name => "derrick", :email => 'a', :password => 'a')
+u = User.create!(:name => "derrick", :email => 'dbozich@icloud.com', :password => '123456')
 
 s = Show.find_or_create_by(name: "David Bowie at Earl's Court")
 v = Venue.find_or_create_by(name: "Earl's Court")

@@ -1,6 +1,6 @@
 class ShowsController < ApplicationController
   def new
-    if logged_in?
+    if user_signed_in?
       @show = Show.new
       @show.artists.build
     else
