@@ -1,2 +1,4 @@
-2. google oauth
-3. better error handling
+1. better error handling
+  - link detection
+  - get rid of alerts on ajax renders
+  -

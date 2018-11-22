@@ -86,6 +86,7 @@ $(function(){
 
     function gatekeeper(){
       if (validate()) {
+        debugger
         serialize()
       } else {
         return
@@ -171,8 +172,10 @@ $(function(){
       }).then((res) => res.json())
         .then(data => {
             const html = HandlebarsTemplates['show_index']({ show: data });
-            $('.new_show').replaceWith(html);
+            $('#new_show').replaceWith(html);
             $('#city-name').remove()
+            $('.alert').html('')
+
             history.pushState({}, '','/shows')
         })
     }
@@ -186,14 +189,17 @@ $(function(){
       if ($('.row').length > 0) {
         $('#city-name').remove()
         $('.row').replaceWith(html);
+        $('.alert').html('')
         history.pushState({}, '','/shows')
       } else if ($('#new_show').length > 0) {
         $('#city-name').remove()
         $('#new_show').replaceWith(html);
+        $('.alert').html('')
         history.pushState({}, '','/shows')
       } else {
         $('#city-name').remove()
         $('.card-deck').replaceWith(html);
+        $('.alert').html('')
         history.pushState({}, '','/shows')
       }
     })
@@ -217,10 +223,12 @@ $(function(){
         if ($('.row').length > 0) {
           $('#city-name').remove()
           $('.row').replaceWith(html);
+          $('.alert').html('')
           history.pushState({}, '', href)
         } else {
           $('#city-name').remove()
           $('.card-deck').replaceWith(html);
+          $('.alert').html('')
           history.pushState({}, '', href)
         }
       })
@@ -230,6 +238,7 @@ $(function(){
         const html = HandlebarsTemplates['artist_show']({ artist: response });
         $('#city-name').remove()
         $('.row').replaceWith(html);
+        $('.alert').html('')
         history.pushState({}, '', href)
       })
     }
