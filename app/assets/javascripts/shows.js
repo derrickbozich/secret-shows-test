@@ -46,7 +46,7 @@ $(function(){
           handleValidation('feedback-artist-image', 'artists need a valid image link', 'string')
           break;
         case 'show[poster]':
-          handleValidation('feedback-poster', 'a show needs a flyer, or a default will be provided', 'string')
+          handleValidation('feedback-poster', 'a show needs a flyer', 'string')
           break;
         case 'show[date]':
           handleValidation('feedback-date', 'a date is required', 'string')
@@ -175,7 +175,6 @@ $(function(){
             $('#new_show').replaceWith(html);
             $('#city-name').remove()
             $('.alert').html('')
-
             history.pushState({}, '','/shows')
         })
     }
