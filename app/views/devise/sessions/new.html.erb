@@ -1,15 +1,20 @@
-<div class="justify-content-center">
+
+<%= content_tag :div, class: 'form-row' do %>
+  <%= content_tag :div, class: 'form-group col-md-5' do %>
+  <% end %>
+
+  <%= content_tag :div, class: 'form-group col-md-3' do %>
   <h2>Log in</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.label :email, class: "form-label-group mx-sm-7 mb-2" %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.label :email, class: "" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control mb-2' %>
     </div>
 
     <div class="field">
-      <%= f.label :password, class: "form-label-group mx-sm-7 mb-2" %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
+      <%= f.label :password, class: "" %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control mb-2' %>
     </div>
 
     <% if devise_mapping.rememberable? -%>
@@ -20,10 +25,10 @@
     <% end -%>
 
     <div class="actions">
-      <%= f.submit "Log in", class: "btn btn-lg btn-dark btn-block mb-2 my-4" %>
+      <%= f.submit "Log in", class: " btn btn-dark form-label-group mx-sm-7 mb-2" %>
     </div>
   <% end %>
 
   <%= render "devise/shared/links" %>
-
-</div>
+  <% end %>
+<% end %>

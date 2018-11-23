@@ -8,6 +8,7 @@ $(function(){
     $.getJSON("/cities", data =>{
       const html = HandlebarsTemplates['city_list']({ cities: data })
       $('.row').replaceWith(html);
+      $('.card-deck').replaceWith(html);
     })
   })
 

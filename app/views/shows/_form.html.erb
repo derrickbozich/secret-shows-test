@@ -26,24 +26,30 @@
     <%= f.fields_for :artists do |artist_builder| %>
       <%= content_tag :div, class: 'form-row', id: 'artists-form' do %>
 
-        <%= content_tag :div, class: 'form-group col-md-6' do %>
+        <%= content_tag :div, class: 'form-group col-md-4' do %>
           <%= artist_builder.label "Artist Name" %>
           <%= artist_builder.text_field :name, class: 'form-control', placeholder: 'Artist Name' %>
           <%= content_tag(:div, '', id: "feedback-artist-name", class: 'feedback') %>
 
         <% end %>
 
-        <%= content_tag :div, class: 'form-group col-md-6' do %>
+        <%= content_tag :div, class: 'form-group col-md-4' do %>
           <%= artist_builder.label "Artist Image Link" %>
           <%= artist_builder.text_field :image, class: 'form-control', placeholder: 'square format please' %>
           <%= content_tag(:div, '', id: "feedback-artist-image", class: 'feedback') %>
-
         <% end %>
+
+        <%= content_tag :div, class: 'form-group col-md-4' do %>
+          <%= artist_builder.label "Add Another Artist Field" %>
+          <%= button_tag "Add Another Artist Field", type: 'button', class: ' form-control btn btn-dark', id: 'add-artist' %>
+        <% end %>
+
       <% end %>
     <% end  %>
 
-    <%= button_tag "Add Another Artist Field", type: 'button', class: 'col-md-4 btn btn-dark mb-2', id: 'add-artist' %>
-
+    <%= content_tag :div, class: 'form-row' do %>
+      <div class="col-md-4 mb-2  "></div>
+    <% end  %>
 
     <%= content_tag :div, class: 'form-row' do %>
       <!-- Poster Link  -->
@@ -74,10 +80,11 @@
     <% end %>
 
 
+    <%= content_tag :div, class: 'form-row' do %>
+      <div class="col-md-4 mb-2  "></div>
+      <%= f.submit class: 'col-md-4 btn btn-dark mb-2 ', id: 'create-show' %>
+    <% end %>
 
-
-
-    <%= f.submit class: 'col-md-4 btn btn-outline-dark', id: 'create-show' %>
 
 
 

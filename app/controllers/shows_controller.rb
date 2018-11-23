@@ -54,6 +54,7 @@ class ShowsController < ApplicationController
   end
 
   def update
+    binding.pry
     @show = Show.find_by_id(params[:id])
     @show.update(show_params)
 
