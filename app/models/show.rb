@@ -34,9 +34,20 @@ class Show < ApplicationRecord
 
   def artists_attributes=(artists_attributes)
     artists_attributes.each do |artist_attributes|
-      # self.artists.build(artist_attributes)
-      artist = Artist.find_or_create_by(artist_attributes)
-      self.artists << artist
+      begin
+        test = artist_attributes['name']
+      rescue
+        test = nil
+      end
+
+      if test
+        artist = Artist.find_or_create_by(artist_attributes)
+        self.artists << artist
+      else
+        artist = Artist.find_or_create_by(artist_attributes[1]) unless artist_attributes[1].empty?
+        self.artists << artist if artist
+      end
+
       # ShowArtist.create(show_id: self.id, artist_id: artist.id)
     end
   end

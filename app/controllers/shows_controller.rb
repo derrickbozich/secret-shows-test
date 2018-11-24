@@ -54,13 +54,19 @@ class ShowsController < ApplicationController
   end
 
   def update
-    binding.pry
-    @show = Show.find_by_id(params[:id])
-    @show.update(show_params)
 
+    @show = Show.find_by_id(params[:id])
+    @show.artists.destroy_all
+    @show.update!(show_params)
     if @show.save
+      @shows = Show.all
       flash[:success] = "Show Edited!"
-      redirect_to show_path(@show)
+      respond_to do |format|
+        # format.html {render :show }
+        format.json {render json: @shows}
+      end
+      # binding.pry
+      # redirect_to '/test'
     else
       render 'edit'
     end

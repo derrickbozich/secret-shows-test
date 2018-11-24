@@ -3,11 +3,11 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(function(){
-  $(document).on('click','#add-artist', event =>{
+  $(document).on('click','.add-artist', event =>{
     event.preventDefault();
     // generate additional form fields for artists
     const html = HandlebarsTemplates['add_artist_field']({})
-    $('#artists-form').append(html);
+    $('#artists-form').after(html);
   })
 
   function validate(){
@@ -80,13 +80,15 @@ $(function(){
     return readyToSubmit
   }
 
+  $(document).on('click','.delete-artist', event =>{
+    event.toElement.parentElement.parentElement.remove()
+  })
+
 
   $(document).on('click','#create-show', event =>{
     event.preventDefault();
-
     function gatekeeper(){
       if (validate()) {
-        debugger
         serialize()
       } else {
         return
@@ -97,7 +99,16 @@ $(function(){
 
     function serialize(){
       //serialize form data for active record
-      let elements = document.getElementById("new_show").elements;
+      let elements
+      let inEditMode = false
+      let action = ''
+      try {
+        elements = document.getElementById("new_show").elements;
+      } catch (e) {
+        elements = document.getElementsByClassName("edit_show")[0].elements;
+        action = document.getElementsByClassName("edit_show")[0].action.replace("http://localhost:3000", "")
+        inEditMode = true
+      }
       let show ={};
       let authenticity_token = ''
       let items = []
@@ -109,7 +120,7 @@ $(function(){
 
       // find all items that have artist attributes and collect in an array
       let artists_attributes = items.filter(item => {
-        return item.name.includes('artists_attributes')
+        return item.name.includes('artists_attributes') && !item.name.includes('id')
       })
 
       //cutting off 'show[name]' so it is just 'name'
@@ -147,7 +158,7 @@ $(function(){
 
       // format artist attributes in a way that active record likes
       show.artists_attributes = []
-      for (var i = 0; i < artists_attributes.length; i++) {
+      for (let i = 0; i < artists_attributes.length; i++) {
         let obj = {}
         if (i % 2 === 0) {
           obj = {name: '', image: ''}
@@ -156,27 +167,47 @@ $(function(){
           show.artists_attributes.push(obj)
         }
       }
-
       // final output
       show = {show: show}
+      if (inEditMode) {
+        fetch(action, {
+            method: "PATCH", // *GET, POST, PUT, DELETE, etc.
+            credentials: "same-origin", // include, *same-origin, omit
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                'X-CSRF-Token': authenticity_token
+                // "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: JSON.stringify(show) // body data type must match "Content-Type" header
+        }).then((res) => res.json())
+          .then(data => {
+              const html = HandlebarsTemplates['show_index']({ show: data });
+              $('.edit_show').replaceWith(html);
+              $('#city-name').remove()
+              history.pushState({}, '','/shows')
+          })
+      } else {
+        fetch('/shows', {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            credentials: "same-origin", // include, *same-origin, omit
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                'X-CSRF-Token': authenticity_token
+                // "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: JSON.stringify(show) // body data type must match "Content-Type" header
+        }).then((res) => res.json())
+          .then(data => {
+              const html = HandlebarsTemplates['show_index']({ show: data });
+              $('#new_show').replaceWith(html);
+              $('#city-name').remove()
+              $('.alert').html('')
+              history.pushState({}, '','/shows')
+          })
 
-      fetch('/shows', {
-          method: "POST", // *GET, POST, PUT, DELETE, etc.
-          credentials: "same-origin", // include, *same-origin, omit
-          headers: {
-              "Content-Type": "application/json; charset=utf-8",
-              'X-CSRF-Token': authenticity_token
-              // "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: JSON.stringify(show) // body data type must match "Content-Type" header
-      }).then((res) => res.json())
-        .then(data => {
-            const html = HandlebarsTemplates['show_index']({ show: data });
-            $('#new_show').replaceWith(html);
-            $('#city-name').remove()
-            $('.alert').html('')
-            history.pushState({}, '','/shows')
-        })
+      }
+
+
     }
   })
 
@@ -195,11 +226,16 @@ $(function(){
         $('#new_show').replaceWith(html);
         $('.alert').html('')
         history.pushState({}, '','/shows')
-      } else {
+      } else if ($('#city-name').length > 0) {
         $('#city-name').remove()
         $('.card-deck').replaceWith(html);
         $('.alert').html('')
+        $('.notice').html('')
         history.pushState({}, '','/shows')
+      } else {
+        $('.edit_show').replaceWith(html);
+        $('.alert').html('')
+        $('.notice').html('')
       }
     })
   })

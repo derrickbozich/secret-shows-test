@@ -1,5 +1,5 @@
 
-  <%= form_for @show,  html: {class: "needs-validation"} do |f|  %>
+  <%= form_for @show do |f|  %>
     <%= render 'layouts/errors', object: @show %>
     <%= content_tag :div, class: 'form-row' do %>
       <!-- Show Name  -->
@@ -39,9 +39,14 @@
           <%= content_tag(:div, '', id: "feedback-artist-image", class: 'feedback') %>
         <% end %>
 
-        <%= content_tag :div, class: 'form-group col-md-4' do %>
-          <%= artist_builder.label "Add Another Artist Field" %>
-          <%= button_tag "Add Another Artist Field", type: 'button', class: ' form-control btn btn-dark', id: 'add-artist' %>
+        <%= content_tag :div, class: 'form-group col-md-2' do %>
+          <%= artist_builder.label "Add Another Artist" %>
+          <%= button_tag "Add Another Artist", type: 'button', class: 'form-control btn btn-outline-dark add-artist' %>
+        <% end %>
+
+        <%= content_tag :div, class: 'form-group col-md-2' do %>
+          <%= artist_builder.label "Delete Artist" %>
+          <%= button_tag "Delete Artist", type: 'button', class: 'form-control btn btn-outline-dark delete-artist' %>
         <% end %>
 
       <% end %>
@@ -82,6 +87,11 @@
 
     <%= content_tag :div, class: 'form-row' do %>
       <div class="col-md-4 mb-2  "></div>
+      <% if @show.persisted? %>
+        <%  content = 'update-show'  %>
+      <% else %>
+        <%  content = 'create-show'  %>
+      <% end %>
       <%= f.submit class: 'col-md-4 btn btn-dark mb-2 ', id: 'create-show' %>
     <% end %>
 
