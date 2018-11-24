@@ -232,10 +232,13 @@ $(function(){
         $('.alert').html('')
         $('.notice').html('')
         history.pushState({}, '','/shows')
-      } else {
+      } else if ($('.edit_show').length > 0) {
         $('.edit_show').replaceWith(html);
         $('.alert').html('')
         $('.notice').html('')
+      } else {
+        $('.card-deck').replaceWith(html);
+        history.pushState({}, '','/shows')
       }
     })
   })
