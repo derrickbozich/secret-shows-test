@@ -217,6 +217,7 @@ $(function(){
     $.getJSON(`/shows`, response =>{
       const html = HandlebarsTemplates['show_index']({ show: response });
       if ($('.row').length > 0) {
+        debugger
         $('#city-name').remove()
         $('.row').replaceWith(html);
         $('.alert').empty()
@@ -236,9 +237,11 @@ $(function(){
         $('.edit_show').replaceWith(html);
         $('.alert').empty()
         $('.notice').html('')
-      } else {
+      } else if ($('.card-deck').length > 0) {
         $('.card-deck').replaceWith(html);
         history.pushState({}, '','/shows')
+      } else {
+
       }
     })
   })

@@ -32,7 +32,7 @@ class ShowsController < ApplicationController
         order = params[:show][:artists_attributes][i][:set_order].to_i
         show_artist.set_order = order
       end
-      flash[:success] = "Show Created!"
+      # flash[:success] = "Show Created!"
       # without ajax call, we would redirect to the show index page and see the new show
         # redirect_to shows_path
       #instead send json info of all shows (including the newly created one)
@@ -65,10 +65,10 @@ class ShowsController < ApplicationController
   end
 
   def update
-
     @show = Show.find_by_id(params[:id])
     @show.artists.destroy_all
     @show.update!(show_params)
+
     if @show.save
       show_artists = ShowArtist.where("show_id == ?", @show.id)
 
@@ -77,7 +77,7 @@ class ShowsController < ApplicationController
         show_artist.set_order = order
       end
       @shows = Show.all
-      flash[:success] = "Show Edited!"
+      # flash[:success] = "Show Edited!"
       respond_to do |format|
         # format.html {render :show }
         format.json {render json: @shows}
@@ -106,6 +106,5 @@ class ShowsController < ApplicationController
   def show_params
     params.require(:show).permit(:name,:city_name, :venue_name, :date, :time, :poster, :artists_attributes => [:name, :image, :set_order])
   end
-
 
 end
