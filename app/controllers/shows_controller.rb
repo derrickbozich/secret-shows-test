@@ -70,13 +70,19 @@ class ShowsController < ApplicationController
     @show.artists.destroy_all
     @show.update!(show_params)
     if @show.save
+      show_artists = ShowArtist.where("show_id == ?", @show.id)
+
+      show_artists.each_with_index do |show_artist, i|
+        order = params[:show][:artists_attributes][i][:set_order].to_i
+        show_artist.set_order = order
+      end
       @shows = Show.all
       flash[:success] = "Show Edited!"
       respond_to do |format|
         # format.html {render :show }
         format.json {render json: @shows}
       end
-    
+
       # redirect_to '/test'
     else
       render 'edit'
