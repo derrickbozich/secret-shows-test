@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :venues, only: [:show, :index, :edit, :update]
 
   resources :cities, only: [:show,:index] do
-    resources :shows, only: [:show,:index]
+    resources :shows, only: [:show,:index, :new]
     # resources :venues, only: [:show,:index]
   end
 

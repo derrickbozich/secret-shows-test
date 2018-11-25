@@ -2,6 +2,10 @@ class ShowsController < ApplicationController
   def new
     if user_signed_in?
       @show = Show.new
+      if id = params[:city_id]
+        city = City.find_by_id(id.to_i)
+        @show.city = city
+      end
       @show.artists.build
     else
       flash[:error] = "You Must Login to Create A Show"
@@ -21,6 +25,13 @@ class ShowsController < ApplicationController
     @show.user_id = current_user.id  if current_user
 
     if @show.save && ShowArtist.last.save
+
+      show_artists = ShowArtist.where("show_id == ?", @show.id)
+
+      show_artists.each_with_index do |show_artist, i|
+        order = params[:show][:artists_attributes][i][:set_order].to_i
+        show_artist.set_order = order
+      end
       flash[:success] = "Show Created!"
       # without ajax call, we would redirect to the show index page and see the new show
         # redirect_to shows_path
@@ -65,7 +76,7 @@ class ShowsController < ApplicationController
         # format.html {render :show }
         format.json {render json: @shows}
       end
-      # binding.pry
+    
       # redirect_to '/test'
     else
       render 'edit'
@@ -87,7 +98,7 @@ class ShowsController < ApplicationController
   end
 
   def show_params
-    params.require(:show).permit(:name,:city_name, :venue_name, :date, :time, :poster, :artists_attributes => [:name, :image])
+    params.require(:show).permit(:name,:city_name, :venue_name, :date, :time, :poster, :artists_attributes => [:name, :image, :set_order])
   end
 
 

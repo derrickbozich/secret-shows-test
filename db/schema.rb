@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2018_11_22_013038) do
   create_table "show_artists", force: :cascade do |t|
     t.integer "show_id"
     t.integer "artist_id"
+    t.integer "set_order"
   end
 
   create_table "show_venues", force: :cascade do |t|

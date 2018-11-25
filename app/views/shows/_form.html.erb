@@ -39,14 +39,19 @@
           <%= content_tag(:div, '', id: "feedback-artist-image", class: 'feedback') %>
         <% end %>
 
+        <%= content_tag :div, class: 'form-group col-md-1' do %>
+          <%= artist_builder.label "Set Order" %>
+          <input type="text" name="show[artists_attributes][0][set_order]" class="form-control" placeholder='set order optional'>
+        <% end %>
+
         <%= content_tag :div, class: 'form-group col-md-2' do %>
           <%= artist_builder.label "Add Another Artist" %>
           <%= button_tag "Add Another Artist", type: 'button', class: 'form-control btn btn-outline-dark add-artist' %>
         <% end %>
 
-        <%= content_tag :div, class: 'form-group col-md-2' do %>
-          <%= artist_builder.label "Delete Artist" %>
-          <%= button_tag "Delete Artist", type: 'button', class: 'form-control btn btn-outline-dark delete-artist' %>
+        <%= content_tag :div, class: 'form-group col-md-1' do %>
+          <%= artist_builder.label "Delete" %>
+          <%= button_tag "Delete", type: 'button', class: 'form-control btn btn-outline-dark delete-artist' %>
         <% end %>
 
       <% end %>

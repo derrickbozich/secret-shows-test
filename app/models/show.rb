@@ -32,6 +32,8 @@ class Show < ApplicationRecord
     self.city ? self.city.name : nil
   end
 
+
+
   def artists_attributes=(artists_attributes)
     artists_attributes.each do |artist_attributes|
       begin
@@ -40,11 +42,15 @@ class Show < ApplicationRecord
         test = nil
       end
 
+
+
+
       if test
-        artist = Artist.find_or_create_by(artist_attributes)
+        artist = Artist.find_or_create_by(name: artist_attributes[:name], image: artist_attributes[:image] )
         self.artists << artist
       else
-        artist = Artist.find_or_create_by(artist_attributes[1]) unless artist_attributes[1].empty?
+        artist = Artist.find_or_create_by(name: artist_attributes[1][:name], image: artist_attributes[1][:image])unless artist_attributes[1].empty?
+        # artist = Artist.find_or_create_by(artist_attributes[1]) unless artist_attributes[1].empty?
         self.artists << artist if artist
       end
 
