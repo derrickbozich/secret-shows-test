@@ -94,7 +94,7 @@ class ShowsController < ApplicationController
     @show = Show.find_by_id(params[:id])
     if current_user.shows.include?(@show)
       @show.destroy
-      flash[:success] = "Show Deleted!"
+      # flash[:success] = "Show Deleted!"
       redirect_to shows_path
     else
       flash[:error] = "Show Was Not Deleted!"

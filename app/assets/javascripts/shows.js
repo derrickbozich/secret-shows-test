@@ -217,7 +217,6 @@ $(function(){
     $.getJSON(`/shows`, response =>{
       const html = HandlebarsTemplates['show_index']({ show: response });
       if ($('.row').length > 0) {
-        debugger
         $('#city-name').remove()
         $('.row').replaceWith(html);
         $('.alert').empty()
