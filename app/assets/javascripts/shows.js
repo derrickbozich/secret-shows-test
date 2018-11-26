@@ -2,64 +2,88 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
+
+
+
+
 $(function(){
+
+  $("input[type='text']").on('input', function() {
+      validateField(this)
+  });
+
+  function validateField(event){
+    switch (event.name) {
+      case 'show[name]':
+        handleValidation(event, 'shows must have a name', 'string')
+        break;
+      case 'show[city_name]':
+        handleValidation(event, 'city name is required', 'string')
+        break;
+      case 'show[venue_name]':
+        handleValidation(event, 'venue name is required', 'string')
+        break;
+      case 'show[artists_attributes][0][name]':
+        handleValidation(event, 'at least one artist name is required', 'string')
+        break;
+      case 'show[artists_attributes][0][image]':
+        handleValidation(event, 'artists need a valid image link', 'string')
+        break;
+      case 'show[artists_attributes][][name]':
+        handleValidation(event, 'names must be longer than one character', 'string')
+        break;
+      case 'show[artists_attributes][][image]':
+        handleValidation(event, 'artists need a valid image link', 'string')
+        break;
+      case 'show[poster]':
+        handleValidation(event, 'a show needs a flyer', 'string')
+        break;
+      case 'show[date]':
+        handleValidation(event, 'a date is required', 'string')
+        break;
+      case 'show[time]':
+        handleValidation(event, 'a time is required', 'string')
+        break;
+      default:
+        return
+    }
+    return
+  }
+
+  const handleValidation = (element, message, type) => {
+    if (element.value.length > 0 && typeof element.value === type) {
+      if (element.className.includes(' error')) {
+        element.className = element.className.replace(" error", "")
+        element.nextElementSibling.innerHTML = ''
+        return
+      }
+      return
+    } else {
+      element.nextElementSibling.innerHTML = message
+      if (element.className.includes(' error')) {
+        return
+      } else {
+        element.className = element.className + " error"
+      }
+    }
+  }
+
   $(document).on('click','.add-artist', event =>{
     event.preventDefault();
     // generate additional form fields for artists
+
     const html = HandlebarsTemplates['add_artist_field']({})
     $('#artists-form').after(html);
+    $("input[type='text']").on('input', function() {
+        validateField(this)
+    });
   })
 
-  function validate(){
-    let elements = document.getElementsByClassName("form-control");
-    for (let i = 1; i < elements.length; i++) {
-
-      const handleValidation = (id, message, type) => {
-        if (elements[i].value.length > 0 && typeof elements[i].value === type) {
-          return
-        } else {
-          document.getElementById(id).innerHTML = message
-          elements[i].className = elements[i].className + " error"
-        }
-      }
-
-      switch (elements[i].name) {
-        case 'show[name]':
-          handleValidation('feedback-name', 'shows must have a name', 'string')
-          break;
-        case 'show[city_name]':
-          handleValidation('feedback-city-name', 'city name is required', 'string')
-          break;
-        case 'show[venue_name]':
-          handleValidation('feedback-venue-name', 'venue name is required', 'string')
-          break;
-        case 'show[artists_attributes][0][name]':
-          handleValidation('feedback-artist-name', 'at least one artist name is required', 'string')
-          break;
-        case 'show[artists_attributes][0][image]':
-          handleValidation('feedback-artist-image', 'artists need a valid image link', 'string')
-          break;
-        case 'show[artists_attributes][][name]':
-          handleValidation(elements[i].nextElementSibling.id, 'names must be longer than one character', 'string')
-          break;
-        case 'show[artists_attributes][][image]':
-          handleValidation(elements[i].nextElementSibling.id, 'artists need a valid image link', 'string')
-          break;
-        case 'show[poster]':
-          handleValidation('feedback-poster', 'a show needs a flyer', 'string')
-          break;
-        case 'show[date]':
-          handleValidation('feedback-date', 'a date is required', 'string')
-          break;
-        case 'show[time]':
-          handleValidation('feedback-time', 'a time is required', 'string')
-          break;
-        default:
-      }
-    }
-
+  function validateAll(){
     let readyToSubmit = true
+    let elements = $(".form-control");
     for (let i = 1; i < elements.length; i++) {
+      validateField(elements[i])
       if (elements[i].className.includes(' error')) {
         readyToSubmit = false
       }
@@ -71,17 +95,15 @@ $(function(){
     event.toElement.parentElement.parentElement.remove()
   })
 
-
   $(document).on('click','#create-show', event =>{
     event.preventDefault();
     function gatekeeper(){
-      if (validate()) {
+      if (validateAll()) {
         serialize()
       } else {
         return
       }
     }
-
     gatekeeper()
 
     function serialize(){
@@ -109,8 +131,7 @@ $(function(){
       let artists_attributes = items.filter(item => {
         return item.name.includes('artists_attributes') && !item.name.includes('id')
       })
-
-
+      
       //cutting off 'show[name]' so it is just 'name'
       // then go through a switch statement to add to final
       // active record object
