@@ -9,6 +9,8 @@ $(function(){
       const html = HandlebarsTemplates['city_list']({ cities: data })
       $('.row').replaceWith(html);
       $('.card-deck').replaceWith(html);
+      $('.new_show').replaceWith(html);
+      history.pushState({}, '','/cities')
     })
   })
 

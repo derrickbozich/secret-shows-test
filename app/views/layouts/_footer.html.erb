@@ -1,13 +1,16 @@
-<footer class="footer navbar-fixed-bottom">
-  <%= content_tag :p do %>
-    <p class='text-center'><%= link_to "Create a New Show", new_show_path, class: 'style-1' %></p>
-    <% if current_user.present? %>
-    <p class='text-center'>current user:  <%=  current_user.name  %></p>
-    <% end%>
-    <p class='text-center'><%= login_logout_link   %></p>
-    <% if !current_user.present? %>
-      <p class='text-center'><%= link_to "Sign Up", new_user_registration_path, class: 'style-1'  %></p>
-    <% end %>
-  <% end %>
 
-</footer>
+
+<footer class="footer mt-5">
+      <div class="container">
+        <%= content_tag :p do %>
+          <p class='text-center'><%= link_to "Create a New Show", new_show_path, class: 'style-1' %></p>
+          <% if current_user.present? %>
+          <p class='text-center'>current user:  <%=  current_user.name  %></p>
+          <% end%>
+          <p class='text-center'><%= login_logout_link   %></p>
+          <% if !current_user.present? %>
+            <p class='text-center'><%= link_to "Sign Up", new_user_registration_path, class: 'style-1'  %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </footer>

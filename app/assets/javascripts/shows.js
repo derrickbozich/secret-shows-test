@@ -97,6 +97,7 @@ $(function(){
 
   $(document).on('click','#create-show', event =>{
     event.preventDefault();
+
     function gatekeeper(){
       if (validateAll()) {
         serialize()
@@ -131,7 +132,7 @@ $(function(){
       let artists_attributes = items.filter(item => {
         return item.name.includes('artists_attributes') && !item.name.includes('id')
       })
-      
+
       //cutting off 'show[name]' so it is just 'name'
       // then go through a switch statement to add to final
       // active record object
@@ -213,7 +214,7 @@ $(function(){
               const html = HandlebarsTemplates['show_index']({ show: shows });
               $('#new_show').replaceWith(html);
               $('#city-name').remove()
-              $('.alert').empty()
+              $('.alert').remove()
               history.pushState({}, '','/shows')
           })
       }
@@ -235,28 +236,29 @@ $(function(){
       if ($('.row').length > 0) {
         $('#city-name').remove()
         $('.row').replaceWith(html);
-        $('.alert').empty()
+        $('.alert').remove()
         history.pushState({}, '','/shows')
       } else if ($('#new_show').length > 0) {
         $('#city-name').remove()
         $('#new_show').replaceWith(html);
-        $('.alert').empty()
+        $('.alert').remove()
         history.pushState({}, '','/shows')
       } else if ($('#city-name').length > 0) {
         $('#city-name').remove()
         $('.card-deck').replaceWith(html);
-        $('.alert').empty()
+        $('.alert').remove()
         $('.notice').html('')
         history.pushState({}, '','/shows')
       } else if ($('.edit_show').length > 0) {
         $('.edit_show').replaceWith(html);
-        $('.alert').empty()
+        $('.alert').remove()
         $('.notice').html('')
       } else if ($('.card-deck').length > 0) {
         $('.card-deck').replaceWith(html);
         history.pushState({}, '','/shows')
-      } else {
-
+      } else if ($('.cities-index').length > 0) {
+        $('.cities-index').replaceWith(html);
+        history.pushState({}, '','/shows')
       }
     })
   })
@@ -279,12 +281,12 @@ $(function(){
         if ($('.row').length > 0) {
           $('#city-name').remove()
           $('.row').replaceWith(html);
-          $('.alert').empty()
+          $('.alert').remove()
           history.pushState({}, '', href)
         } else {
           $('#city-name').remove()
           $('.card-deck').replaceWith(html);
-          $('.alert').empty()
+          $('.alert').remove()
           history.pushState({}, '', href)
         }
       })
@@ -294,7 +296,7 @@ $(function(){
         const html = HandlebarsTemplates['artist_show']({ artist: response });
         $('#city-name').remove()
         $('.row').replaceWith(html);
-        $('.alert').empty()
+        $('.alert').remove()
         history.pushState({}, '', href)
       })
     }
