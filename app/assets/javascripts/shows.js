@@ -201,7 +201,8 @@ $(function(){
             body: JSON.stringify(show) // body data type must match "Content-Type" header
         }).then((res) => res.json())
           .then(data => {
-              const html = HandlebarsTemplates['show_index']({ show: data });
+              let shows = orderShows(data)
+              const html = HandlebarsTemplates['show_index']({ show: shows });
               $('#new_show').replaceWith(html);
               $('#city-name').remove()
               $('.alert').empty()
@@ -211,11 +212,18 @@ $(function(){
     }
   })
 
+  function orderShows(shows){
+    return shows.sort(function(a,b) {
+      return new Date(a.date) - new Date (b.date);
+      });
+  }
+
   $(document).on('click','#show-index', event =>{
     event.preventDefault();
 
     $.getJSON(`/shows`, response =>{
-      const html = HandlebarsTemplates['show_index']({ show: response });
+      let shows = orderShows(response)
+      const html = HandlebarsTemplates['show_index']({ show: shows });
       if ($('.row').length > 0) {
         $('#city-name').remove()
         $('.row').replaceWith(html);

@@ -42,19 +42,14 @@ class Show < ApplicationRecord
         test = nil
       end
 
-
-
-
       if test
         artist = Artist.find_or_create_by(name: artist_attributes[:name], image: artist_attributes[:image] )
         self.artists << artist
       else
         artist = Artist.find_or_create_by(name: artist_attributes[1][:name], image: artist_attributes[1][:image])unless artist_attributes[1].empty?
-        # artist = Artist.find_or_create_by(artist_attributes[1]) unless artist_attributes[1].empty?
         self.artists << artist if artist
       end
 
-      # ShowArtist.create(show_id: self.id, artist_id: artist.id)
     end
   end
 

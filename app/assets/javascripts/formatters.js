@@ -4,7 +4,7 @@ class DateFormatter{
     const dateObj = new Date(date)
     this.date = dateObj;
     this.month = this.findMonth();
-    this.dayNumber = dateObj.getDate();
+    this.dayNumber = dateObj.getDate() + 1;
     this.dayOfWeek = this.findDayOfWeek();
     this.mon = this.findShortMonth();
   }
