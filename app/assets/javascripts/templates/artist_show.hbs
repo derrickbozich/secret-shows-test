@@ -11,7 +11,7 @@
     <p class="card-text"></p>
       <h4 class="card-title">Upcoming Shows</h4>
           {{#artist.shows}}
-          <li class="list-group-item"><a class="style-1" href="/shows/{{id}}">{{name}}</a></li>
+          <li class="list-group-item"><a class="style-1" href="/shows/{{id}}">{{dateFormatter date 'monthAndDay'}} {{name}}</a></li>
           {{/artist.shows}}
       <p></p>
     </div>

@@ -17,8 +17,16 @@ Handlebars.registerHelper("dateFormatter", function(string, format){
     case 'dayOfWeek':
       return date.dayOfWeek;
       break;
+    case 'monthAndDay':
+      return date.monthAndDay;
+      break;
     default:
       console.log('Sorry!');
   }
+  // This function is executed whenever this helper is used
+})
+
+Handlebars.registerHelper("idGenerator", function(){
+  return Math.floor(Math.random() * 10000000000000)
   // This function is executed whenever this helper is used
 })

@@ -40,10 +40,10 @@ $(function(){
           handleValidation('feedback-artist-image', 'artists need a valid image link', 'string')
           break;
         case 'show[artists_attributes][][name]':
-          handleValidation('feedback-artist-name', 'names must be longer than one character', 'string')
+          handleValidation(elements[i].nextElementSibling.id, 'names must be longer than one character', 'string')
           break;
         case 'show[artists_attributes][][image]':
-          handleValidation('feedback-artist-image', 'artists need a valid image link', 'string')
+          handleValidation(elements[i].nextElementSibling.id, 'artists need a valid image link', 'string')
           break;
         case 'show[poster]':
           handleValidation('feedback-poster', 'a show needs a flyer', 'string')
@@ -56,19 +56,6 @@ $(function(){
           break;
         default:
       }
-
-      // switch (elements[i].value) {
-      //   case '':
-      //     if (elements[i].className.includes(' error')) {
-      //       break;
-      //     } else {
-      //       elements[i].className = elements[i].className + ' error'
-      //       break;
-      //     }
-      //   default:
-      //     elements[i].className = elements[i].className.replace('error','');
-      //     break
-      // }
     }
 
     let readyToSubmit = true
@@ -214,7 +201,7 @@ $(function(){
 
   function orderShows(shows){
     return shows.sort(function(a,b) {
-      return new Date(a.date) - new Date (b.date);
+      return new Date(a.date) - new Date(b.date);
       });
   }
 

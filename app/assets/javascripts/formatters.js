@@ -7,6 +7,10 @@ class DateFormatter{
     this.dayNumber = dateObj.getDate() + 1;
     this.dayOfWeek = this.findDayOfWeek();
     this.mon = this.findShortMonth();
+    this.monthAndDay = this.getMonthAndDay();
+  }
+  getMonthAndDay(){
+    return `${this.date.getMonth() + 1}/${this.date.getDate() + 1}`
   }
   findMonth(){
     const monthName = ["January", "February", "March", "April", "May", "June",
