@@ -1,8 +1,13 @@
 <div class="row">
   <div class="col-lg-8">
     <img class="img-fluid" style="width: 100%" src="{{{data.show.poster}}}">
-    <a class="style-1" href="/shows/{{data.show.id}}/edit">Edit Show</a>
-    <a class="style-1" rel="nofollow" data-method="delete" href="/shows/{{data.show.id}}">Delete Show</a>
+
+    {{#iff session '==' show.user.id}}
+      <a class="style-1" href="/shows/{{data.id}}/edit">Edit Show</a>
+      <a class="style-1" rel="nofollow" data-method="delete" href="/shows/{{data.id}}">Delete Show</a>
+   {{else}}
+
+   {{/iff}}
     <a class="style-1" data-id="{{data.show.id}}" data-city-id="{{data.cityId}}" id="previous-show" href="#">Previous Show</a>
     <a class="style-1" data-id="{{data.show.id}}" data-city-id="{{data.cityId}}" id="next-show" href="#">Next Show</a>
   </div>

@@ -251,7 +251,7 @@ $(function(){
         $('#city-name').remove()
         $('.card-deck').replaceWith(html);
         $('.alert').remove()
-        $('.notice').html('')
+        $('.notice').html('') 
         history.pushState({}, '','/shows')
       } else if ($('.edit_show').length > 0) {
         $('.edit_show').replaceWith(html);

@@ -23,7 +23,7 @@ class CitiesController < ApplicationController
     @next_show = city.next_show(show, direction)
     respond_to do |format|
       format.html {render :show}
-      format.json {render json: @next_show, include: ['venue', 'artists']}
+      format.json {render json: @next_show, include: ['venue', 'artists', 'user']}
     end
   end
 
