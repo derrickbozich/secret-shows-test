@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   # resources :users, only: [:new,:create, :show]
 
+  get '/cities/:city_id/shows/:show_id/:direction' => 'cities#next_show'
+
   get '/login' => 'sessions#login'
   post '/login' => 'sessions#login'
   get '/logout' => 'sessions#logout'

@@ -8,7 +8,7 @@ class ShowsController < ApplicationController
       end
       @show.artists.build
     else
-      # flash[:error] = "You Must Login to Create A Show"
+      flash[:error] = "You Must Login to Create A Show"
       redirect_to shows_path
     end
 

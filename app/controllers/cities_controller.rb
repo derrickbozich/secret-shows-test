@@ -16,6 +16,18 @@ class CitiesController < ApplicationController
     end
   end
 
+  def next_show
+    city = City.find_by_id(params[:city_id])
+    show = Show.find_by_id(params[:show_id])
+    direction = params[:direction]
+    @next_show = city.next_show(show, direction)
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @next_show, include: ['venue', 'artists']}
+    end
+  end
+
+
 
 
 
