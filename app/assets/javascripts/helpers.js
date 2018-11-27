@@ -64,7 +64,6 @@ Handlebars.registerHelper('iff', function(a, operator, b, opts) {
        default:
            throw "Unknown operator " + operator;
     }
-    debugger
     if (bool) {
         return opts.fn(this);
     } else {

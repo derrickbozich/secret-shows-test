@@ -123,6 +123,8 @@ $(function(){
         action = document.getElementsByClassName("edit_show")[0].action.replace("http://localhost:3000", "")
         inEditMode = true
       }
+
+      debugger
       let show ={};
       let authenticity_token = ''
       let items = []
@@ -251,7 +253,7 @@ $(function(){
         $('#city-name').remove()
         $('.card-deck').replaceWith(html);
         $('.alert').remove()
-        $('.notice').html('') 
+        $('.notice').html('')
         history.pushState({}, '','/shows')
       } else if ($('.edit_show').length > 0) {
         $('.edit_show').replaceWith(html);

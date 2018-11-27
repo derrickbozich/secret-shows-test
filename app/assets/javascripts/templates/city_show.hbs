@@ -3,7 +3,7 @@
     <img class="img-fluid" style="width: 100%" src="{{{data.show.poster}}}">
 
     {{#iff session '==' data.show.user.id}}
-      <a class="style-1" href="/shows/{{data.id}}/edit">Edit Show</a>
+      <a class="style-1" href="/shows/{{data.show.id}}/edit">Edit Show</a>
       <a class="style-1" rel="nofollow" data-method="delete" href="/shows/{{data.id}}">Delete Show</a>
    {{else}}
 
