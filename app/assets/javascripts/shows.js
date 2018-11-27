@@ -2,13 +2,17 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
-
-
-
-
 $(function(){
 
   $("input[type='text']").on('input', function() {
+      validateField(this)
+  });
+
+  $("input[type='time']").on('change', function() {
+      validateField(this)
+  });
+
+  $("input[type='date']").on('change', function() {
       validateField(this)
   });
 
