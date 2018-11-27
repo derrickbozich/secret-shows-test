@@ -1,91 +1,9 @@
 # README
-autofill for forms and search
-get date to hover over show poster on show index
-get login and signup to look right
-
-add more than two artists
-find a way for users to upload photos
-show descriptions / artist descriptions
-figure out how to make unformatted photos fit
-add admin functionality
-bandcamp/soundcloud/insta links for bands
-performer profile through user
-
-
-
-artists.select { |artist| query.include?(artist.name)}.map{|artist| artist.to_json}
-
-
-def time_rand from = 0.0, to = Time.now
-    Time.at(from + rand * (to.to_f - from.to_f))
-end
-rails g model User name:string --no-test-framework
-rails g resource City name:string --no-test-framework
-rails g resource Venue name:string --no-test-framework
-rails g resource Show name:string venue_id:integer --no-test-framework
-rails g resource Artist name:string --no-test-framework
-rails g migration create_show_artist show_id:integer artist_id:integer --no-test-framework
-
-rails d model User
-rails d resource Venue
-rails d resource Show
-rails d resource Artist
-rails d resource City
-rails d resource ShowArtist
-
-rake db:drop :shows
-rake db:drop :venues
-rake db:drop :artists
-rake db:drop :show_artists
-rake db:drop :cities
-
-show  has_many :show_artists  has_many artists through show_artists    belongs_to :venue
-id               venue_id
-1                1
-1                1
-
-show_artists
-id       show_id          artist_id
-1        1                1
-2        1                2
-
-artist has_many :show_artists has_many shows through show_artists
-id  
-1
-
-venue has_many :shows belongs_to :city
-id        city_id
-1         1
-
-city has_many :venues has_many :shows through :venues
-id    
-
-
-
-user
-id         
-
-
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+# Installation
 
-* Ruby version
+Fork and clone, navigate to project folder and run bundle install in bash. Rails version 5.2.1
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
