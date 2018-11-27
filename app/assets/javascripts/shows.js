@@ -273,7 +273,7 @@ $(function(){
     let href
     if (event.toElement.href) {
       href = event.toElement.href
-    } else {
+    } else if (event.toElement.parentElement.href) {
       //get rid of 'http://localhost'
       href = event.toElement.parentElement.href.substring(21) ;
     }
@@ -294,7 +294,7 @@ $(function(){
           history.pushState({}, '', href)
         }
       })
-    } else {
+    } else if (href.includes('artists')) {
       // if href is for artists
       $.getJSON(href, response =>{
         const html = HandlebarsTemplates['artist_show']({ artist: response });

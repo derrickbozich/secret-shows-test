@@ -52,7 +52,7 @@ class ShowsController < ApplicationController
     @show = Show.find_by_id(params[:id])
     respond_to do |format|
       format.html {render :show }
-      format.json {render json: @show, include: [:artists, :venue, :city]}
+      format.json {render json: @show, include: [:artists, :venue, :city, :user]}
     end
   end
 
@@ -87,15 +87,16 @@ class ShowsController < ApplicationController
 
   def destroy
     @show = Show.find_by_id(params[:id])
-    if current_user.shows.include?(@show)
-      @show.destroy
-      # flash[:success] = "Show Deleted!"
-      redirect_to shows_path
+    if current_user
+      if current_user.shows.include?(@show)
+        @show.destroy
+        # flash[:success] = "Show Deleted!"
+        redirect_to shows_path
+      end
     else
       # flash[:error] = "Show Was Not Deleted!"
       redirect_to shows_path
     end
-
   end
 
   def show_params

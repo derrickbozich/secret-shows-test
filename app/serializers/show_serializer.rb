@@ -3,4 +3,5 @@ class ShowSerializer < ActiveModel::Serializer
   has_one :city
   has_one :venue
   has_many :artists
+  belongs_to :user
 end
