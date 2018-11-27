@@ -49,7 +49,7 @@ function getCookie(cname){
 
 Handlebars.registerHelper('iff', function(a, operator, b, opts) {
     a = getCookie('test')
-    var bool = false;
+    let bool = false;
 
     switch(operator) {
        case '==':
@@ -64,8 +64,6 @@ Handlebars.registerHelper('iff', function(a, operator, b, opts) {
        default:
            throw "Unknown operator " + operator;
     }
-    debugger
-
     if (bool) {
         return opts.fn(this);
     } else {
