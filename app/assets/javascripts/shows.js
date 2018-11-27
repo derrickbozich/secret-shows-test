@@ -124,7 +124,7 @@ $(function(){
         inEditMode = true
       }
 
-      debugger
+
       let show ={};
       let authenticity_token = ''
       let items = []
@@ -199,7 +199,8 @@ $(function(){
             body: JSON.stringify(show) // body data type must match "Content-Type" header
         }).then((res) => res.json())
           .then(data => {
-              const html = HandlebarsTemplates['show_index']({ show: data });
+              let shows = orderShows(data)
+              const html = HandlebarsTemplates['show_index']({ show: shows });
               $('.edit_show').replaceWith(html);
               $('#city-name').remove()
               history.pushState({}, '','/shows')
