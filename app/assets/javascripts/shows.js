@@ -242,6 +242,7 @@ $(function(){
       const html = HandlebarsTemplates['show_index']({ show: shows });
       if ($('.row').length > 0) {
         $('#city-name').remove()
+        $('.venue-name').remove()
         $('.row').replaceWith(html);
         $('.alert').remove()
         history.pushState({}, '','/shows')
